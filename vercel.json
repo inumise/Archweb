@@ -1,0 +1,8 @@
+{
+  "buildCommand": "cd archweb && npm install && npm run build",
+  "outputDirectory": "archweb/dist",
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}
