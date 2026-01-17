@@ -200,14 +200,16 @@ body {
   flex-direction: column;
 }
 
-/* Architectural Frame Assembly */
+/* Architectural Frame Assembly - Enhanced 3D with FOV */
 .frame-assembly {
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 120px;
+  width: 140px;
   z-index: 100;
-  perspective: 1000px;
+  perspective: 1200px;
+  perspective-origin: center center;
+  transform-style: preserve-3d;
 }
 
 .frame-left {
@@ -218,7 +220,7 @@ body {
   right: 0;
 }
 
-/* 3 Progressive Angle Layers */
+/* 3 Progressive Angle Layers with Realistic Depth */
 .frame-layer {
   position: absolute;
   top: 0;
@@ -226,125 +228,308 @@ body {
   background: linear-gradient(
     180deg,
     var(--pearl-white) 0%,
-    var(--pearl-cream) 30%,
-    var(--pearl-warm) 70%,
-    var(--marble-shadow) 100%
+    var(--pearl-cream) 20%,
+    var(--pearl-warm) 50%,
+    var(--marble-shadow) 80%,
+    #c5c0b8 100%
   );
   box-shadow: 
-    inset 2px 0 8px rgba(255, 255, 255, 0.8),
-    inset -2px 0 8px rgba(0, 0, 0, 0.05),
-    4px 0 20px rgba(0, 0, 0, 0.1);
+    inset 3px 0 12px rgba(255, 255, 255, 0.9),
+    inset -3px 0 12px rgba(0, 0, 0, 0.08),
+    6px 0 30px rgba(0, 0, 0, 0.15),
+    0 0 60px rgba(0, 0, 0, 0.05);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 
+/* Left Frame - 3D Perspective Depth */
 .frame-left .frame-layer-1 {
   left: 0;
-  width: 40px;
-  transform: skewY(-2deg);
-  transform-origin: top left;
+  width: 45px;
+  transform: rotateY(8deg) skewY(-1.5deg);
+  transform-origin: left center;
+  animation: frame-breathe-1 8s ease-in-out infinite;
 }
 
 .frame-left .frame-layer-2 {
-  left: 35px;
-  width: 35px;
-  transform: skewY(-4deg);
-  transform-origin: top left;
+  left: 40px;
+  width: 40px;
+  transform: rotateY(12deg) skewY(-3deg);
+  transform-origin: left center;
+  animation: frame-breathe-2 8s ease-in-out infinite;
+  animation-delay: -2s;
 }
 
 .frame-left .frame-layer-3 {
-  left: 65px;
-  width: 30px;
-  transform: skewY(-6deg);
-  transform-origin: top left;
+  left: 75px;
+  width: 35px;
+  transform: rotateY(18deg) skewY(-5deg);
+  transform-origin: left center;
+  animation: frame-breathe-3 8s ease-in-out infinite;
+  animation-delay: -4s;
 }
 
+/* Right Frame - 3D Perspective Depth */
 .frame-right .frame-layer-1 {
   right: 0;
-  width: 40px;
-  transform: skewY(2deg);
-  transform-origin: top right;
+  width: 45px;
+  transform: rotateY(-8deg) skewY(1.5deg);
+  transform-origin: right center;
+  animation: frame-breathe-1 8s ease-in-out infinite;
 }
 
 .frame-right .frame-layer-2 {
-  right: 35px;
-  width: 35px;
-  transform: skewY(4deg);
-  transform-origin: top right;
+  right: 40px;
+  width: 40px;
+  transform: rotateY(-12deg) skewY(3deg);
+  transform-origin: right center;
+  animation: frame-breathe-2 8s ease-in-out infinite;
+  animation-delay: -2s;
 }
 
 .frame-right .frame-layer-3 {
-  right: 65px;
-  width: 30px;
-  transform: skewY(6deg);
-  transform-origin: top right;
+  right: 75px;
+  width: 35px;
+  transform: rotateY(-18deg) skewY(5deg);
+  transform-origin: right center;
+  animation: frame-breathe-3 8s ease-in-out infinite;
+  animation-delay: -4s;
 }
 
-/* Glass Panels (Windows) */
+/* Subtle breathing animation for depth */
+@keyframes frame-breathe-1 {
+  0%, 100% { transform: rotateY(8deg) skewY(-1.5deg) translateZ(0); }
+  50% { transform: rotateY(8deg) skewY(-1.5deg) translateZ(2px); }
+}
+
+@keyframes frame-breathe-2 {
+  0%, 100% { transform: rotateY(12deg) skewY(-3deg) translateZ(0); }
+  50% { transform: rotateY(12deg) skewY(-3deg) translateZ(3px); }
+}
+
+@keyframes frame-breathe-3 {
+  0%, 100% { transform: rotateY(18deg) skewY(-5deg) translateZ(0); }
+  50% { transform: rotateY(18deg) skewY(-5deg) translateZ(4px); }
+}
+
+/* Frame edge highlights for realism */
+.frame-layer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+}
+
+.frame-left .frame-layer::before {
+  right: 0;
+}
+
+.frame-right .frame-layer::before {
+  left: 0;
+}
+
+/* Frame depth shadow */
+.frame-layer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.02) 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  pointer-events: none;
+}
+
+/* Glass Panels (Windows) - Enhanced Realism */
 .glass-panel {
   position: absolute;
-  top: 15%;
-  bottom: 25%;
-  width: 25px;
+  top: 12%;
+  bottom: 22%;
+  width: 30px;
   background: linear-gradient(
     180deg,
     var(--sky-deep) 0%,
-    var(--sky-mid) 30%,
-    var(--sky-light) 60%,
-    var(--sky-pale) 100%
+    var(--sky-mid) 25%,
+    var(--sky-light) 50%,
+    var(--sky-pale) 75%,
+    #f8fcff 100%
   );
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
   box-shadow: 
-    inset 0 0 30px rgba(0, 0, 0, 0.15),
-    inset 0 0 60px rgba(74, 144, 194, 0.2);
+    inset 0 0 40px rgba(0, 0, 0, 0.2),
+    inset 0 0 80px rgba(74, 144, 194, 0.25),
+    0 0 20px rgba(74, 144, 194, 0.15),
+    0 4px 30px rgba(0, 0, 0, 0.1);
+  transform-style: preserve-3d;
 }
 
 .glass-left {
-  left: 95px;
+  left: 110px;
+  transform: rotateY(5deg);
 }
 
 .glass-right {
-  right: 95px;
+  right: 110px;
+  transform: rotateY(-5deg);
 }
 
+/* Animated glass reflection */
 .glass-reflection {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.2) 25%,
     transparent 50%,
-    rgba(255, 255, 255, 0.1) 100%
+    rgba(255, 255, 255, 0.1) 75%,
+    rgba(255, 255, 255, 0.3) 100%
   );
+  animation: glass-shimmer 6s ease-in-out infinite;
 }
 
+@keyframes glass-shimmer {
+  0%, 100% { 
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+  50% { 
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+}
+
+/* Sky reflection in glass */
 .sky-view {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.1) 100%
+    rgba(90, 159, 212, 0.3) 0%,
+    rgba(123, 184, 232, 0.2) 30%,
+    rgba(157, 206, 242, 0.1) 60%,
+    transparent 100%
   );
+  animation: sky-drift 15s ease-in-out infinite;
 }
 
-/* Interior Space */
+@keyframes sky-drift {
+  0%, 100% { 
+    background-position: 0 0;
+    opacity: 0.8;
+  }
+  50% { 
+    background-position: 0 10px;
+    opacity: 1;
+  }
+}
+
+/* Glass panel inner frame */
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* Glass panel depth shadow */
+.glass-panel::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 5px;
+  right: 5px;
+  height: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    transparent 100%
+  );
+  filter: blur(4px);
+}
+
+/* Interior Space - Enhanced 3D Depth */
 .interior-space {
   position: relative;
   z-index: 50;
-  margin: 0 140px;
+  margin: 0 160px;
   background: linear-gradient(
     180deg,
     var(--pearl-white) 0%,
-    #ffffff 20%,
-    #ffffff 80%,
+    #ffffff 15%,
+    #ffffff 85%,
     var(--pearl-cream) 100%
   );
-  border-radius: 20px 20px 0 0;
+  border-radius: 24px 24px 0 0;
   box-shadow: 
-    0 -10px 60px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.8);
-  min-height: calc(100vh - 200px);
+    0 -15px 80px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.9),
+    inset 0 2px 30px rgba(255, 255, 255, 0.8),
+    inset 0 -20px 60px rgba(0, 0, 0, 0.02);
+  min-height: calc(100vh - 180px);
   padding: 0 60px 60px;
+  transform-style: preserve-3d;
+  animation: interior-entrance 1.5s ease-out;
+}
+
+@keyframes interior-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Interior depth illusion - top edge */
+.interior-space::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    transparent 100%
+  );
+  border-radius: 24px 24px 0 0;
+  pointer-events: none;
+}
+
+/* Interior ambient shadow */
+.interior-space::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 90%,
+    rgba(0, 0, 0, 0.03) 100%
+  );
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* Header */
@@ -767,11 +952,33 @@ body {
   z-index: 10;
 }
 
-/* Ionic Column Styling */
+/* Ionic Column Styling - Enhanced 3D Realism */
 .ionic-column {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transform-style: preserve-3d;
+  animation: column-rise 1s ease-out;
+  animation-fill-mode: both;
+}
+
+.ionic-column:nth-child(1) { animation-delay: 0.1s; }
+.ionic-column:nth-child(2) { animation-delay: 0.2s; }
+.ionic-column:nth-child(3) { animation-delay: 0.3s; }
+.ionic-column:nth-child(4) { animation-delay: 0.4s; }
+.ionic-column:nth-child(5) { animation-delay: 0.5s; }
+.ionic-column:nth-child(6) { animation-delay: 0.6s; }
+.ionic-column:nth-child(7) { animation-delay: 0.7s; }
+
+@keyframes column-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .column-capital {
