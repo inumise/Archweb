@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 
 const rainbowColors = [
-  '#ff0080', '#ff8c00', '#ffff00', '#00ff00', 
-  '#00ffff', '#0080ff', '#8000ff', '#ff00ff'
+  '#e879a9', '#f4a574', '#f0d878', '#7dd3a8', 
+  '#7ec8d8', '#7ba3d8', '#a78bcc', '#c9a0c9'
 ]
 
 interface Particle {
@@ -249,7 +249,7 @@ function CanvasBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 -z-10"
-      style={{ background: 'linear-gradient(135deg, #000000 0%, #0a0015 50%, #000510 100%)' }}
+      style={{ background: 'linear-gradient(135deg, #0a0a12 0%, #0d0a18 50%, #0a0d14 100%)' }}
     />
   )
 }

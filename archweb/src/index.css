@@ -5,13 +5,14 @@
 @tailwind utilities;
 
 :root {
-  --rainbow-1: #ff0080;
-  --rainbow-2: #ff8c00;
-  --rainbow-3: #ffff00;
-  --rainbow-4: #00ff00;
-  --rainbow-5: #00ffff;
-  --rainbow-6: #0080ff;
-  --rainbow-7: #8000ff;
+  --rainbow-1: #e879a9;
+  --rainbow-2: #f4a574;
+  --rainbow-3: #f0d878;
+  --rainbow-4: #7dd3a8;
+  --rainbow-5: #7ec8d8;
+  --rainbow-6: #7ba3d8;
+  --rainbow-7: #a78bcc;
+  --rainbow-8: #c9a0c9;
   --radius: 0.5rem;
 }
 
@@ -27,7 +28,7 @@ html {
 
 body {
   font-family: 'Space Grotesk', sans-serif;
-  background: #000000;
+  background: #0a0a12;
   color: #ffffff;
   overflow-x: hidden;
   min-height: 100vh;
@@ -155,5 +156,66 @@ body {
 
 .orbitron {
   font-family: 'Orbitron', sans-serif;
+}
+
+@keyframes morphing {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%; }
+  75% { border-radius: 60% 40% 60% 30% / 70% 30% 50% 60%; }
+}
+
+@keyframes aurora {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 0.9; }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(10px, -15px) rotate(2deg); }
+  50% { transform: translate(-5px, -25px) rotate(-1deg); }
+  75% { transform: translate(-15px, -10px) rotate(1deg); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px var(--rainbow-1), 0 0 40px var(--rainbow-5), 0 0 60px var(--rainbow-7);
+    filter: brightness(1);
+  }
+  50% { 
+    box-shadow: 0 0 30px var(--rainbow-3), 0 0 60px var(--rainbow-6), 0 0 90px var(--rainbow-1);
+    filter: brightness(1.1);
+  }
+}
+
+.aurora-bg {
+  background: linear-gradient(
+    -45deg,
+    var(--rainbow-1),
+    var(--rainbow-3),
+    var(--rainbow-5),
+    var(--rainbow-7),
+    var(--rainbow-1)
+  );
+  background-size: 400% 400%;
+  animation: aurora 15s ease infinite;
+}
+
+.morphing-blob {
+  animation: morphing 8s ease-in-out infinite;
+}
+
+.breathing {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.drifting {
+  animation: drift 12s ease-in-out infinite;
 }
 

@@ -48,7 +48,7 @@ function URLCard({ item, onRemove, index }: { item: URLItem; onRemove: (id: stri
     }
   }, [])
 
-  const rainbowColors = ['#ff0080', '#ff8c00', '#ffff00', '#00ff00', '#00ffff', '#0080ff', '#8000ff']
+  const rainbowColors = ['#e879a9', '#f4a574', '#f0d878', '#7dd3a8', '#7ec8d8', '#7ba3d8', '#a78bcc', '#c9a0c9']
   const borderColor = rainbowColors[index % rainbowColors.length]
 
   return (
@@ -209,7 +209,7 @@ export default function URLPreview() {
               />
               <button
                 onClick={addUrl}
-                className="px-4 py-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-medium hover:opacity-90 transition-opacity"
+                className="px-4 py-2 rounded-full aurora-bg text-white font-medium hover:opacity-90 transition-opacity"
               >
                 Add
               </button>
