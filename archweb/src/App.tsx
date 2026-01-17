@@ -32,8 +32,22 @@ function App() {
       )
     })
 
+    const updateScrollProgress = () => {
+      const scrollProgress = document.getElementById('scroll-progress')
+      if (scrollProgress) {
+        const scrollTop = window.scrollY
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight
+        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
+        scrollProgress.style.width = `${scrollPercent}%`
+      }
+    }
+
+    window.addEventListener('scroll', updateScrollProgress)
+    updateScrollProgress()
+
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+      window.removeEventListener('scroll', updateScrollProgress)
     }
   }, [])
 

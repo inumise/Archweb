@@ -157,15 +157,20 @@ export default function URLPreview() {
       formattedUrl = 'https://' + formattedUrl
     }
 
-    const newItem: URLItem = {
-      id: Date.now().toString(),
-      url: formattedUrl,
-      title: new URL(formattedUrl).hostname.replace('www.', ''),
-    }
+    try {
+      const parsedUrl = new URL(formattedUrl)
+      const newItem: URLItem = {
+        id: Date.now().toString(),
+        url: formattedUrl,
+        title: parsedUrl.hostname.replace('www.', ''),
+      }
 
-    setUrls(prev => [newItem, ...prev])
-    setNewUrl('')
-    setIsAdding(false)
+      setUrls(prev => [newItem, ...prev])
+      setNewUrl('')
+      setIsAdding(false)
+    } catch {
+      alert('Please enter a valid URL')
+    }
   }
 
   const removeUrl = (id: string) => {
