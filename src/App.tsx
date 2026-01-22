@@ -1,14 +1,19 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ThemeProvider } from './contexts/ThemeContext'
 import Scene3D from './components/Scene3D'
 import HeroSection from './components/HeroSection'
 import AboutSection from './components/AboutSection'
 import NewAgeTech from './components/NewAgeTech'
 import TechShowcase from './components/TechShowcase'
 import WebServices from './components/WebServices'
+import PricingSection from './components/PricingSection'
 import URLPreview from './components/URLPreview'
 import Footer from './components/Footer'
+import AudioPlayer from './components/AudioPlayer'
+import AccessibilityMenu from './components/AccessibilityMenu'
+import ChatAgent from './components/ChatAgent'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -55,38 +60,38 @@ function App() {
   }, [])
 
   return (
-    <div ref={mainRef} className="relative min-h-screen bg-black text-white overflow-x-hidden">
-      <Scene3D />
-      
-      <div className="relative z-10">
-        <HeroSection />
+    <ThemeProvider>
+      <div ref={mainRef} className="relative min-h-screen bg-black text-white overflow-x-hidden">
+        <Scene3D />
+        <AudioPlayer />
+        <AccessibilityMenu />
+        <ChatAgent />
         
-                <AboutSection />
-        
-                <NewAgeTech />
-        
-                <TechShowcase />
-        
-                <WebServices />
-        
-                <div id="portals">
-                  <URLPreview />
-                </div>
-        
-                <Footer />
-      </div>
+        <div className="relative z-10 pt-12">
+          <HeroSection />
+          <AboutSection />
+          <NewAgeTech />
+          <TechShowcase />
+          <WebServices />
+          <PricingSection />
+          <div id="portals">
+            <URLPreview />
+          </div>
+          <Footer />
+        </div>
 
-      <div className="fixed top-0 left-0 w-full h-1 z-50">
-        <div 
-          className="h-full bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500"
-          style={{
-            width: '0%',
-            transition: 'width 0.1s ease-out'
-          }}
-          id="scroll-progress"
-        />
+        <div className="fixed top-12 left-0 w-full h-1 z-40">
+          <div 
+            className="h-full bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500"
+            style={{
+              width: '0%',
+              transition: 'width 0.1s ease-out'
+            }}
+            id="scroll-progress"
+          />
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   )
 }
 
