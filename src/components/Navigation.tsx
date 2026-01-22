@@ -41,7 +41,7 @@ export default function Navigation({ currentPage, onPageChange }: NavigationProp
       }}
     >
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-center gap-1 py-2 overflow-x-auto">
+        <div className="flex items-center justify-center gap-2 py-3 overflow-x-auto">
           {navItems.map((item) => {
             const Icon = item.icon
             const isActive = currentPage === item.id
@@ -53,25 +53,38 @@ export default function Navigation({ currentPage, onPageChange }: NavigationProp
                 onClick={() => onPageChange(item.id)}
                 onMouseEnter={() => setHoveredItem(item.id)}
                 onMouseLeave={() => setHoveredItem(null)}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 whitespace-nowrap"
+                className="relative px-5 py-2.5 rounded-xl transition-all duration-300 whitespace-nowrap overflow-hidden group"
                 style={{ 
                   background: isActive 
-                    ? `${colors.primary}20` 
+                    ? `linear-gradient(135deg, ${colors.primary}25, ${colors.secondary}15)` 
                     : isHovered 
                       ? `${colors.primary}10` 
-                      : 'transparent',
+                      : `${colors.surface}80`,
                   color: isActive ? colors.primary : colors.text,
-                  border: `1px solid ${isActive ? colors.primary + '40' : 'transparent'}`,
-                  transform: isHovered && !isActive ? 'translateY(-2px)' : 'translateY(0)'
+                  border: `1px solid ${isActive ? colors.primary + '50' : colors.border}`,
+                  transform: isHovered && !isActive ? 'translateY(-2px)' : 'translateY(0)',
+                  boxShadow: isActive ? `0 4px 20px ${colors.primary}20` : 'none'
                 }}
               >
+                {/* Icon as background watermark */}
                 <Icon 
-                  className="w-4 h-4" 
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 transition-all duration-300" 
                   style={{ 
-                    color: isActive ? colors.primary : colors.textMuted 
+                    color: isActive ? colors.primary : colors.textMuted,
+                    opacity: isActive ? 0.25 : 0.1,
+                    transform: `translateY(-50%) scale(${isHovered ? 1.1 : 1})`
                   }} 
                 />
-                <span className="text-sm font-medium hidden sm:inline">{item.name}</span>
+                {/* Text label - always visible */}
+                <span 
+                  className="relative z-10 text-sm font-semibold tracking-wide"
+                  style={{ 
+                    color: isActive ? colors.primary : colors.text,
+                    textShadow: isActive ? `0 0 20px ${colors.primary}40` : 'none'
+                  }}
+                >
+                  {item.name}
+                </span>
               </button>
             )
           })}
