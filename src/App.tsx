@@ -4,7 +4,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Scene3D from './components/Scene3D'
 import HeroSection from './components/HeroSection'
 import AboutSection from './components/AboutSection'
+import NewAgeTech from './components/NewAgeTech'
 import TechShowcase from './components/TechShowcase'
+import WebServices from './components/WebServices'
 import URLPreview from './components/URLPreview'
 import Footer from './components/Footer'
 
@@ -59,15 +61,19 @@ function App() {
       <div className="relative z-10">
         <HeroSection />
         
-        <AboutSection />
+                <AboutSection />
         
-        <TechShowcase />
+                <NewAgeTech />
         
-        <div id="portals">
-          <URLPreview />
-        </div>
+                <TechShowcase />
         
-        <Footer />
+                <WebServices />
+        
+                <div id="portals">
+                  <URLPreview />
+                </div>
+        
+                <Footer />
       </div>
 
       <div className="fixed top-0 left-0 w-full h-1 z-50">

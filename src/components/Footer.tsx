@@ -10,10 +10,10 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="text-center md:text-left">
               <h3 className="text-xl md:text-2xl font-bold orbitron mb-2">
-                <span className="rainbow-text">RADEK HOMMER</span>
+                <span className="rainbow-text">DON HOMMER</span>
               </h3>
               <p className="text-white/45 text-sm">
-                Global Web Development & System Integration
+                New Age Web Design & Global System Integration
               </p>
             </div>
 
@@ -31,7 +31,7 @@ export default function Footer() {
 
           <div className="mt-6 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-white/30">
-              © {new Date().getFullYear()} Radek Hommer. All rights reserved.
+              © {new Date().getFullYear()} Don Hommer. All rights reserved.
             </p>
             
             <p className="text-xs text-white/30">

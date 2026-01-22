@@ -154,7 +154,7 @@ export default function HeroSection() {
           <div className="absolute -inset-px aurora-bg rounded-full blur-sm opacity-50" />
           <div className="relative glass-strong px-8 py-3 rounded-full thin-rainbow-border">
             <span className="text-sm font-medium tracking-wider uppercase rainbow-text">
-              Global Web Development & System Integration
+              New Age Web Design & Global System Integration
             </span>
           </div>
         </div>
@@ -169,20 +169,24 @@ export default function HeroSection() {
           transition: 'transform 0.15s ease-out'
         }}
       >
-        <span className="block rainbow-text text-glow">RADEK HOMMER</span>
-        <span className="block text-white/80 text-2xl md:text-3xl lg:text-4xl mt-4" style={{ textShadow: '0 0 30px rgba(167, 139, 204, 0.3)' }}>
-          Full-Spectrum Development Team
+        <span className="block rainbow-text text-glow">DON HOMMER</span>
+        <span className="block text-white/70 text-2xl md:text-3xl lg:text-4xl mt-4" style={{ textShadow: '0 0 30px rgba(167, 139, 204, 0.4)' }}>
+          Visionary Creative Leader
+        </span>
+        <span className="block text-white/50 text-lg md:text-xl lg:text-2xl mt-2" style={{ textShadow: '0 0 20px rgba(126, 200, 216, 0.3)' }}>
+          Where Passion Meets Powerful Machinery
         </span>
       </h1>
 
       <p 
         ref={subtitleRef}
-        className="text-lg md:text-xl text-white/55 text-center max-w-3xl mb-12 leading-relaxed"
+        className="text-lg md:text-xl text-white/55 text-center max-w-4xl mb-12 leading-relaxed"
       >
-        World-class developers, graphic designers, and creative professionals — 
-        all connected to an extremely powerful cloud system.
+        The best development team in the world meets the most powerful cloud infrastructure.
+        World-class developers, elite graphic designers, and visionary creative professionals —
+        united under one passionate leader to deliver the impossible.
         <span className="block mt-4 text-white/70">
-          <span className="rainbow-text font-medium">Unlimited Possibilities</span> through <span className="rainbow-text font-medium">Advanced Technology</span>
+          <span className="rainbow-text font-medium">Global Recognition</span> through <span className="rainbow-text font-medium">Unmatched Excellence</span>
         </span>
       </p>
 

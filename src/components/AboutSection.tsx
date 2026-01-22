@@ -9,13 +9,13 @@ const storyParts = [
   {
     icon: Beaker,
     title: 'The Origin',
-    description: 'Where science met imagination. From biochemistry laboratories in the Czech hills to dangerous hydrogen production research and expeditions beyond the edge of life itself — through collapses and clinical deaths, Radek Hommer emerged with a vision to project the impossible into reality.',
+    description: 'Where science met imagination. From biochemistry laboratories in the Czech hills to dangerous hydrogen production research and expeditions beyond the edge of life itself — through collapses and clinical deaths, Don Hommer emerged with a vision to project the impossible into reality. A passionate creative leader forged through fire.',
     color: '#e879a9'
   },
   {
     icon: Users,
-    title: 'The Team',
-    description: 'Today, that vision powers a full-spectrum development team: world-class developers, graphic designers, UX specialists, and creative professionals — all connected to an extremely powerful cloud system that amplifies human creativity beyond conventional limits.',
+    title: 'The Global Team',
+    description: 'Today, that vision powers the world\'s most elite development team: world-class developers, elite graphic designers, UX visionaries, and creative professionals — all connected to the most powerful cloud infrastructure on the planet. Together, we deliver what others call impossible.',
     color: '#7ec8d8'
   }
 ]
