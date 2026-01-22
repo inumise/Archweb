@@ -5,6 +5,14 @@ const pastelColors = [
   '#7ec8d8', '#7ba3d8', '#a78bcc', '#c9a0c9'
 ]
 
+// Detect if device is mobile/low-power for performance optimization
+const isMobileDevice = () => {
+  if (typeof window === 'undefined') return false
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+         window.innerWidth < 768 ||
+         navigator.hardwareConcurrency <= 4
+}
+
 interface Microorganism {
   x: number
   y: number
@@ -67,7 +75,13 @@ function CrystallineBackground() {
     }
 
     const initElements = () => {
-      microorganismsRef.current = Array.from({ length: 20 }, () => ({
+      // Reduce particle counts on mobile for smooth performance
+      const isMobile = isMobileDevice()
+      const microCount = isMobile ? 8 : 20
+      const woodCount = isMobile ? 25 : 60
+      const laserCount = isMobile ? 3 : 6
+
+      microorganismsRef.current = Array.from({ length: microCount }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 0.25,
@@ -75,12 +89,12 @@ function CrystallineBackground() {
         size: 20 + Math.random() * 40,
         color: pastelColors[Math.floor(Math.random() * pastelColors.length)],
         pulsePhase: Math.random() * Math.PI * 2,
-        tentacles: 4 + Math.floor(Math.random() * 4),
+        tentacles: isMobile ? 3 + Math.floor(Math.random() * 2) : 4 + Math.floor(Math.random() * 4),
         rotation: Math.random() * Math.PI * 2,
         rotationSpeed: (Math.random() - 0.5) * 0.008
       }))
 
-      woodParticlesRef.current = Array.from({ length: 60 }, () => ({
+      woodParticlesRef.current = Array.from({ length: woodCount }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         length: 8 + Math.random() * 25,
@@ -90,7 +104,7 @@ function CrystallineBackground() {
         color: Math.random() > 0.5 ? '#8B7355' : '#A0522D'
       }))
 
-      laserBeamsRef.current = Array.from({ length: 6 }, () => ({
+      laserBeamsRef.current = Array.from({ length: laserCount }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         angle: Math.random() * Math.PI * 2,
