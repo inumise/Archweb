@@ -11,9 +11,8 @@ import WebServices from './components/WebServices'
 import PricingSection from './components/PricingSection'
 import URLPreview from './components/URLPreview'
 import Footer from './components/Footer'
-import AudioPlayer from './components/AudioPlayer'
 import AccessibilityMenu from './components/AccessibilityMenu'
-import ChatAgent from './components/ChatAgent'
+import LeftSideMenu from './components/LeftSideMenu'
 import Navigation, { PageType } from './components/Navigation'
 
 // Lazy load pages for better performance - only loads when navigated to
@@ -140,10 +139,9 @@ function App() {
     <ThemeProvider>
       <div ref={mainRef} className="relative min-h-screen bg-black text-white overflow-x-hidden">
         <Scene3D />
-        <AudioPlayer />
         <AccessibilityMenu />
         <Navigation currentPage={currentPage} onPageChange={setCurrentPage} />
-        <ChatAgent />
+        <LeftSideMenu />
         
         <div className="relative z-10 pt-24">
           {renderPage()}

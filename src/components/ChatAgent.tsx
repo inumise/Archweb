@@ -48,8 +48,13 @@ function findResponse(input: string): string {
   return responses.default
 }
 
-export default function ChatAgent() {
-  const [isOpen, setIsOpen] = useState(false)
+interface ChatAgentProps {
+  isControlled?: boolean
+  onClose?: () => void
+}
+
+export default function ChatAgent({ isControlled = false, onClose }: ChatAgentProps) {
+  const [isOpen, setIsOpen] = useState(isControlled)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isTyping, setIsTyping] = useState(false)
@@ -120,21 +125,31 @@ export default function ChatAgent() {
     }
   }
 
+  const handleClose = () => {
+    if (isControlled && onClose) {
+      onClose()
+    } else {
+      setIsOpen(false)
+    }
+  }
+
   return (
     <>
-      {/* Chat Button */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 left-6 z-50 transition-all duration-300 ${isOpen ? 'opacity-0 pointer-events-none scale-90' : 'opacity-100 scale-100'}`}
-        style={{
-          background: colors.gradient,
-          borderRadius: '50%',
-          padding: '16px',
-          boxShadow: `0 4px 20px ${colors.primary}40`
-        }}
-      >
-        <MessageCircle className="w-6 h-6" style={{ color: colors.background }} />
-      </button>
+      {/* Chat Button - only show when not controlled */}
+      {!isControlled && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className={`fixed bottom-6 left-6 z-50 transition-all duration-300 ${isOpen ? 'opacity-0 pointer-events-none scale-90' : 'opacity-100 scale-100'}`}
+          style={{
+            background: colors.gradient,
+            borderRadius: '50%',
+            padding: '16px',
+            boxShadow: `0 4px 20px ${colors.primary}40`
+          }}
+        >
+          <MessageCircle className="w-6 h-6" style={{ color: colors.background }} />
+        </button>
+      )}
 
       {/* Chat Window */}
       <div
@@ -180,7 +195,7 @@ export default function ChatAgent() {
             </div>
           </div>
           <button
-            onClick={() => setIsOpen(false)}
+            onClick={handleClose}
             className="p-2 rounded-lg transition-colors hover:bg-white/10"
           >
             <X className="w-5 h-5" style={{ color: colors.textMuted }} />

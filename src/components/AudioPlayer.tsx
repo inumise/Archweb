@@ -38,9 +38,14 @@ const BINAURAL = {
   beta: 15,     // 15Hz - focus, alertness
 }
 
-export default function AudioPlayer() {
+interface AudioPlayerProps {
+  isControlled?: boolean
+  onClose?: () => void
+}
+
+export default function AudioPlayer({ isControlled = false, onClose }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false)
-  const [showPrompt, setShowPrompt] = useState(true)
+  const [showPrompt, setShowPrompt] = useState(!isControlled)
   const [intensity, setIntensity] = useState(0)
   
   const audioContextRef = useRef<AudioContext | null>(null)
@@ -598,6 +603,107 @@ export default function AudioPlayer() {
       }
     }
   }, [stopPlaying])
+
+  // If controlled, render compact panel instead of floating button
+  if (isControlled) {
+    return (
+      <div
+        className="fixed bottom-6 left-6 z-50"
+        style={{
+          width: '320px',
+          maxWidth: 'calc(100vw - 48px)',
+          background: 'rgba(10, 10, 15, 0.95)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(255,255,255,0.1)',
+          borderRadius: '20px',
+          boxShadow: '0 20px 60px rgba(232, 121, 169, 0.2)',
+          overflow: 'hidden'
+        }}
+      >
+        {/* Header */}
+        <div
+          className="flex items-center justify-between p-4"
+          style={{
+            background: 'rgba(20, 20, 30, 0.8)',
+            borderBottom: '1px solid rgba(255,255,255,0.1)'
+          }}
+        >
+          <div className="flex items-center gap-3">
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center relative"
+              style={{ background: 'linear-gradient(135deg, rgba(232, 121, 169, 0.25), rgba(126, 200, 216, 0.25))' }}
+            >
+              <Music className="w-5 h-5 text-white" />
+              {isPlaying && (
+                <div 
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(232, 121, 169, 0.3), rgba(126, 200, 216, 0.3))',
+                    animation: 'promptPulse 2s ease-in-out infinite'
+                  }}
+                />
+              )}
+            </div>
+            <div>
+              <p className="font-medium text-white">Sahara Soundscape</p>
+              <p className="text-xs text-white/50">5D Spatial Audio</p>
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-2 rounded-lg transition-colors hover:bg-white/10"
+          >
+            <span className="text-white/50 text-xl">&times;</span>
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="p-6 text-center">
+          <p className="text-white/70 text-sm mb-4">
+            Immersive ambient with harp arpeggios, deep bass power, and binaural brain entrainment
+          </p>
+          
+          {/* Play/Pause Button */}
+          <button
+            onClick={togglePlay}
+            className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 hover:scale-110"
+            style={{
+              background: isPlaying 
+                ? 'linear-gradient(135deg, rgba(232, 121, 169, 0.4), rgba(126, 200, 216, 0.4))'
+                : 'linear-gradient(135deg, rgba(232, 121, 169, 0.2), rgba(126, 200, 216, 0.2))',
+              border: '1px solid rgba(255,255,255,0.2)',
+              boxShadow: isPlaying ? `0 0 30px rgba(232, 121, 169, ${0.3 + intensity * 0.3})` : 'none'
+            }}
+          >
+            {isPlaying ? (
+              <Volume2 
+                className="w-8 h-8 text-white" 
+                style={{ filter: `drop-shadow(0 0 ${intensity * 10}px rgba(126, 200, 216, 0.8))` }}
+              />
+            ) : (
+              <VolumeX className="w-8 h-8 text-white/60" />
+            )}
+          </button>
+          
+          <p className="text-white/40 text-xs">
+            {isPlaying ? 'Playing - Click to pause' : 'Click to play'}
+          </p>
+          
+          <p className="text-white/30 text-xs mt-3">
+            Best with headphones
+          </p>
+        </div>
+
+        {/* CSS animations */}
+        <style>{`
+          @keyframes promptPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+          }
+        `}</style>
+      </div>
+    )
+  }
 
   return (
     <>
