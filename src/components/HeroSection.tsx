@@ -148,6 +148,9 @@ export default function HeroSection() {
         style={{ background: 'linear-gradient(135deg, rgba(167, 139, 204, 0.3), rgba(201, 160, 201, 0.2))', animationDelay: '2s' }} />
       <div className="floating-element absolute bottom-48 right-1/4 w-24 h-24 rounded-full morphing-blob breathing opacity-40 drifting"
         style={{ background: 'linear-gradient(135deg, rgba(125, 211, 168, 0.3), rgba(240, 216, 120, 0.2))', animationDelay: '3s' }} />
+      {/* Metallic accent floating element */}
+      <div className="floating-element absolute top-1/3 right-8 w-20 h-20 rounded-full breathing opacity-50 drifting metallic-glow"
+        style={{ background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(192, 192, 192, 0.3))', animationDelay: '1.5s' }} />
 
       <div className="hero-badge mb-8">
         <div className="relative">
@@ -170,7 +173,7 @@ export default function HeroSection() {
         }}
       >
         <span className="block rainbow-text text-glow">DON HOMMER</span>
-        <span className="block text-white/70 text-2xl md:text-3xl lg:text-4xl mt-4" style={{ textShadow: '0 0 30px rgba(167, 139, 204, 0.4)' }}>
+        <span className="block metallic-gold-text text-2xl md:text-3xl lg:text-4xl mt-4" style={{ textShadow: '0 0 30px rgba(212, 175, 55, 0.4)' }}>
           Visionary Creative Leader
         </span>
         <span className="block text-white/50 text-lg md:text-xl lg:text-2xl mt-2" style={{ textShadow: '0 0 20px rgba(126, 200, 216, 0.3)' }}>

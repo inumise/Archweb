@@ -5,6 +5,15 @@ const pastelColors = [
   '#7ec8d8', '#7ba3d8', '#a78bcc', '#c9a0c9'
 ]
 
+// Metallic colors for accent particles (~5% of visual elements)
+const metallicColors = [
+  '#d4af37', // Gold
+  '#c0c0c0', // Silver
+  '#cd7f32', // Bronze
+  '#b87333', // Copper
+  '#b76e79', // Rose Gold
+]
+
 // Detect if device is mobile/low-power for performance optimization
 const isMobileDevice = () => {
   if (typeof window === 'undefined') return false
@@ -53,6 +62,19 @@ interface LaserBeam {
   opacity: number
 }
 
+interface MetallicParticle {
+  x: number
+  y: number
+  size: number
+  color: string
+  shimmerPhase: number
+  rotation: number
+  rotationSpeed: number
+  vx: number
+  vy: number
+  glowIntensity: number
+}
+
 function CrystallineBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationRef = useRef<number>(0)
@@ -60,6 +82,7 @@ function CrystallineBackground() {
   const woodParticlesRef = useRef<WoodParticle[]>([])
   const lightningsRef = useRef<Lightning[]>([])
   const laserBeamsRef = useRef<LaserBeam[]>([])
+  const metallicParticlesRef = useRef<MetallicParticle[]>([])
   const timeRef = useRef(0)
 
   useEffect(() => {
@@ -112,6 +135,21 @@ function CrystallineBackground() {
         speed: 0.15 + Math.random() * 0.2,
         color: pastelColors[Math.floor(Math.random() * pastelColors.length)],
         opacity: 0.08 + Math.random() * 0.15
+      }))
+
+      // Metallic particles - ~5% of visual elements for subtle metallic accents
+      const metallicCount = isMobile ? 4 : 8
+      metallicParticlesRef.current = Array.from({ length: metallicCount }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: 15 + Math.random() * 25,
+        color: metallicColors[Math.floor(Math.random() * metallicColors.length)],
+        shimmerPhase: Math.random() * Math.PI * 2,
+        rotation: Math.random() * Math.PI * 2,
+        rotationSpeed: (Math.random() - 0.5) * 0.01,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.15,
+        glowIntensity: 0.3 + Math.random() * 0.4
       }))
     }
 
@@ -257,6 +295,58 @@ function CrystallineBackground() {
       ctx.restore()
     }
 
+    const drawMetallicParticle = (p: MetallicParticle, time: number) => {
+      const shimmer = Math.sin(time * 0.8 + p.shimmerPhase) * 0.3 + 0.7
+      const size = p.size * (0.9 + Math.sin(time * 0.3 + p.shimmerPhase) * 0.1)
+      
+      ctx.save()
+      ctx.translate(p.x, p.y)
+      ctx.rotate(p.rotation)
+      
+      // Outer glow
+      const glowGrad = ctx.createRadialGradient(0, 0, 0, 0, 0, size * 1.5)
+      glowGrad.addColorStop(0, p.color + '40')
+      glowGrad.addColorStop(0.5, p.color + '15')
+      glowGrad.addColorStop(1, 'transparent')
+      ctx.fillStyle = glowGrad
+      ctx.globalAlpha = p.glowIntensity * shimmer
+      ctx.beginPath()
+      ctx.arc(0, 0, size * 1.5, 0, Math.PI * 2)
+      ctx.fill()
+      
+      // Main metallic body - diamond/crystal shape
+      ctx.globalAlpha = 0.6 * shimmer
+      ctx.beginPath()
+      ctx.moveTo(0, -size)
+      ctx.lineTo(size * 0.6, 0)
+      ctx.lineTo(0, size)
+      ctx.lineTo(-size * 0.6, 0)
+      ctx.closePath()
+      
+      // Metallic gradient
+      const metalGrad = ctx.createLinearGradient(-size, -size, size, size)
+      metalGrad.addColorStop(0, p.color)
+      metalGrad.addColorStop(0.3, '#ffffff')
+      metalGrad.addColorStop(0.5, p.color)
+      metalGrad.addColorStop(0.7, '#ffffff')
+      metalGrad.addColorStop(1, p.color)
+      ctx.fillStyle = metalGrad
+      ctx.fill()
+      
+      // Inner highlight
+      ctx.globalAlpha = 0.4 * shimmer
+      ctx.beginPath()
+      ctx.moveTo(0, -size * 0.5)
+      ctx.lineTo(size * 0.3, 0)
+      ctx.lineTo(0, size * 0.3)
+      ctx.lineTo(-size * 0.3, 0)
+      ctx.closePath()
+      ctx.fillStyle = '#ffffff'
+      ctx.fill()
+      
+      ctx.restore()
+    }
+
     const drawPetriDish = () => {
       const cx = canvas.width / 2, cy = canvas.height / 2
       const radius = Math.max(canvas.width, canvas.height) * 0.7
@@ -312,6 +402,24 @@ function CrystallineBackground() {
           org.vy = Math.max(-0.4, Math.min(0.4, org.vy))
         }
         drawMicroorganism(org, time)
+      })
+
+      // Metallic particles - subtle shimmering accents
+      metallicParticlesRef.current.forEach(p => {
+        p.x += p.vx
+        p.y += p.vy
+        p.rotation += p.rotationSpeed
+        if (p.x < -p.size) p.x = canvas.width + p.size
+        if (p.x > canvas.width + p.size) p.x = -p.size
+        if (p.y < -p.size) p.y = canvas.height + p.size
+        if (p.y > canvas.height + p.size) p.y = -p.size
+        if (Math.random() < 0.003) {
+          p.vx += (Math.random() - 0.5) * 0.05
+          p.vy += (Math.random() - 0.5) * 0.05
+          p.vx = Math.max(-0.2, Math.min(0.2, p.vx))
+          p.vy = Math.max(-0.2, Math.min(0.2, p.vy))
+        }
+        drawMetallicParticle(p, time)
       })
 
       createLightning()

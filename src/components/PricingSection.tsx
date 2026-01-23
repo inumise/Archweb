@@ -179,13 +179,7 @@ export default function PricingSection() {
             style={{ color: colors.text }}
           >
             <span 
-              className="font-bold"
-              style={{ 
-                background: colors.gradient,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}
+              className="font-bold metallic-gold-text"
             >
               Crafted Solutions
             </span>
