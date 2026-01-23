@@ -1,18 +1,50 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState, lazy, Suspense } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ThemeProvider, useTheme } from './contexts/ThemeContext'
 import Scene3D from './components/Scene3D'
 import HeroSection from './components/HeroSection'
 import AboutSection from './components/AboutSection'
+import NewAgeTech from './components/NewAgeTech'
 import TechShowcase from './components/TechShowcase'
+import WebServices from './components/WebServices'
+import PricingSection from './components/PricingSection'
 import URLPreview from './components/URLPreview'
 import Footer from './components/Footer'
+import AccessibilityMenu from './components/AccessibilityMenu'
+import LeftSideMenu from './components/LeftSideMenu'
+import Navigation, { PageType } from './components/Navigation'
+
+// Lazy load pages for better performance - only loads when navigated to
+const TechPage = lazy(() => import('./pages/TechPage'))
+const MindMapPage = lazy(() => import('./pages/MindMapPage'))
+const HelperPage = lazy(() => import('./pages/HelperPage'))
+const CataloguePage = lazy(() => import('./pages/CataloguePage'))
+const EnterprisePage = lazy(() => import('./pages/EnterprisePage'))
+const SensePage = lazy(() => import('./pages/SensePage'))
 
 gsap.registerPlugin(ScrollTrigger)
 
-function App() {
-  const mainRef = useRef<HTMLDivElement>(null)
+// Loading fallback for lazy-loaded pages
+function PageLoader() {
+  const { colors } = useTheme()
+  return (
+    <div 
+      className="min-h-screen flex items-center justify-center"
+      style={{ background: 'transparent' }}
+    >
+      <div className="text-center">
+        <div 
+          className="w-12 h-12 rounded-full border-2 border-t-transparent animate-spin mx-auto mb-4"
+          style={{ borderColor: colors.primary, borderTopColor: 'transparent' }}
+        />
+        <p style={{ color: colors.textMuted }}>Loading...</p>
+      </div>
+    </div>
+  )
+}
 
+function MainPage() {
   useEffect(() => {
     const sections = document.querySelectorAll('section')
     
@@ -33,6 +65,32 @@ function App() {
       )
     })
 
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    }
+  }, [])
+
+  return (
+    <>
+      <HeroSection />
+      <AboutSection />
+      <NewAgeTech />
+      <TechShowcase />
+      <WebServices />
+      <PricingSection />
+      <div id="portals">
+        <URLPreview />
+      </div>
+      <Footer />
+    </>
+  )
+}
+
+function App() {
+  const mainRef = useRef<HTMLDivElement>(null)
+  const [currentPage, setCurrentPage] = useState<PageType>('main')
+
+  useEffect(() => {
     const updateScrollProgress = () => {
       const scrollProgress = document.getElementById('scroll-progress')
       if (scrollProgress) {
@@ -47,40 +105,63 @@ function App() {
     updateScrollProgress()
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
       window.removeEventListener('scroll', updateScrollProgress)
     }
   }, [])
 
-  return (
-    <div ref={mainRef} className="relative min-h-screen bg-black text-white overflow-x-hidden">
-      <Scene3D />
-      
-      <div className="relative z-10">
-        <HeroSection />
-        
-        <AboutSection />
-        
-        <TechShowcase />
-        
-        <div id="portals">
-          <URLPreview />
-        </div>
-        
-        <Footer />
-      </div>
+  // Scroll to top when page changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [currentPage])
 
-      <div className="fixed top-0 left-0 w-full h-1 z-50">
-        <div 
-          className="h-full bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500"
-          style={{
-            width: '0%',
-            transition: 'width 0.1s ease-out'
-          }}
-          id="scroll-progress"
-        />
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'main':
+        return <MainPage />
+      case 'tech':
+        return <Suspense fallback={<PageLoader />}><TechPage /></Suspense>
+      case 'mindmap':
+        return <Suspense fallback={<PageLoader />}><MindMapPage /></Suspense>
+      case 'helper':
+        return <Suspense fallback={<PageLoader />}><HelperPage /></Suspense>
+      case 'catalogue':
+        return <Suspense fallback={<PageLoader />}><CataloguePage /></Suspense>
+      case 'enterprise':
+        return <Suspense fallback={<PageLoader />}><EnterprisePage /></Suspense>
+      case 'sense':
+        return <Suspense fallback={<PageLoader />}><SensePage /></Suspense>
+      default:
+        return <MainPage />
+    }
+  }
+
+  return (
+    <ThemeProvider>
+      <div ref={mainRef} className="relative min-h-screen bg-black text-white overflow-x-hidden">
+        <Scene3D />
+        <AccessibilityMenu />
+        <Navigation currentPage={currentPage} onPageChange={setCurrentPage} />
+        <LeftSideMenu />
+        
+        <div className="relative z-10 pt-24">
+          {renderPage()}
+        </div>
+
+        {/* Scroll progress bar - only show on main page */}
+        {currentPage === 'main' && (
+          <div className="fixed top-24 left-0 w-full h-1 z-30">
+            <div 
+              className="h-full bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500"
+              style={{
+                width: '0%',
+                transition: 'width 0.1s ease-out'
+              }}
+              id="scroll-progress"
+            />
+          </div>
+        )}
       </div>
-    </div>
+    </ThemeProvider>
   )
 }
 

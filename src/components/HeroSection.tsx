@@ -148,13 +148,16 @@ export default function HeroSection() {
         style={{ background: 'linear-gradient(135deg, rgba(167, 139, 204, 0.3), rgba(201, 160, 201, 0.2))', animationDelay: '2s' }} />
       <div className="floating-element absolute bottom-48 right-1/4 w-24 h-24 rounded-full morphing-blob breathing opacity-40 drifting"
         style={{ background: 'linear-gradient(135deg, rgba(125, 211, 168, 0.3), rgba(240, 216, 120, 0.2))', animationDelay: '3s' }} />
+      {/* Metallic accent floating element */}
+      <div className="floating-element absolute top-1/3 right-8 w-20 h-20 rounded-full breathing opacity-50 drifting metallic-glow"
+        style={{ background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(192, 192, 192, 0.3))', animationDelay: '1.5s' }} />
 
       <div className="hero-badge mb-8">
         <div className="relative">
           <div className="absolute -inset-px aurora-bg rounded-full blur-sm opacity-50" />
           <div className="relative glass-strong px-8 py-3 rounded-full thin-rainbow-border">
             <span className="text-sm font-medium tracking-wider uppercase rainbow-text">
-              Global Web Development & System Integration
+              New Age Web Design & Global System Integration
             </span>
           </div>
         </div>
@@ -169,20 +172,24 @@ export default function HeroSection() {
           transition: 'transform 0.15s ease-out'
         }}
       >
-        <span className="block rainbow-text text-glow">RADEK HOMMER</span>
-        <span className="block text-white/80 text-2xl md:text-3xl lg:text-4xl mt-4" style={{ textShadow: '0 0 30px rgba(167, 139, 204, 0.3)' }}>
-          Full-Spectrum Development Team
+        <span className="block rainbow-text text-glow">DON HOMMER</span>
+        <span className="block metallic-gold-text text-2xl md:text-3xl lg:text-4xl mt-4" style={{ textShadow: '0 0 30px rgba(212, 175, 55, 0.4)' }}>
+          Visionary Creative Leader
+        </span>
+        <span className="block text-white/50 text-lg md:text-xl lg:text-2xl mt-2" style={{ textShadow: '0 0 20px rgba(126, 200, 216, 0.3)' }}>
+          Where Passion Meets Powerful Machinery
         </span>
       </h1>
 
       <p 
         ref={subtitleRef}
-        className="text-lg md:text-xl text-white/55 text-center max-w-3xl mb-12 leading-relaxed"
+        className="text-lg md:text-xl text-white/55 text-center max-w-4xl mb-12 leading-relaxed"
       >
-        World-class developers, graphic designers, and creative professionals — 
-        all connected to an extremely powerful cloud system.
+        The best development team in the world meets the most powerful cloud infrastructure.
+        World-class developers, elite graphic designers, and visionary creative professionals —
+        united under one passionate leader to deliver the impossible.
         <span className="block mt-4 text-white/70">
-          <span className="rainbow-text font-medium">Unlimited Possibilities</span> through <span className="rainbow-text font-medium">Advanced Technology</span>
+          <span className="rainbow-text font-medium">Global Recognition</span> through <span className="rainbow-text font-medium">Unmatched Excellence</span>
         </span>
       </p>
 

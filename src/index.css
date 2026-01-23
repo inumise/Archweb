@@ -14,6 +14,22 @@
   --rainbow-7: #a78bcc;
   --rainbow-8: #c9a0c9;
   --radius: 0.5rem;
+  
+  /* Metallic colors */
+  --metallic-gold: #d4af37;
+  --metallic-gold-light: #f4d03f;
+  --metallic-gold-dark: #b8860b;
+  --metallic-silver: #c0c0c0;
+  --metallic-silver-light: #e8e8e8;
+  --metallic-silver-dark: #808080;
+  --metallic-bronze: #cd7f32;
+  --metallic-bronze-light: #e6a85c;
+  --metallic-bronze-dark: #8b5a2b;
+  --metallic-copper: #b87333;
+  --metallic-copper-light: #da8a4a;
+  --metallic-copper-dark: #8b4513;
+  --metallic-platinum: #e5e4e2;
+  --metallic-rose-gold: #b76e79;
 }
 
 * {
@@ -263,5 +279,122 @@ body {
   );
   background-size: 200% 100%;
   animation: shimmer 4s linear infinite;
+}
+
+/* Metallic effects */
+@keyframes metallic-shine {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes metallic-pulse {
+  0%, 100% { 
+    filter: brightness(1);
+    box-shadow: 0 0 10px var(--metallic-gold), 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+  50% { 
+    filter: brightness(1.2);
+    box-shadow: 0 0 20px var(--metallic-gold), 0 0 40px rgba(212, 175, 55, 0.5);
+  }
+}
+
+.metallic-gold-text {
+  background: linear-gradient(
+    90deg,
+    var(--metallic-gold-dark),
+    var(--metallic-gold),
+    var(--metallic-gold-light),
+    var(--metallic-gold),
+    var(--metallic-gold-dark)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: metallic-shine 4s linear infinite;
+}
+
+.metallic-silver-text {
+  background: linear-gradient(
+    90deg,
+    var(--metallic-silver-dark),
+    var(--metallic-silver),
+    var(--metallic-silver-light),
+    var(--metallic-silver),
+    var(--metallic-silver-dark)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: metallic-shine 5s linear infinite;
+}
+
+.metallic-bronze-text {
+  background: linear-gradient(
+    90deg,
+    var(--metallic-bronze-dark),
+    var(--metallic-bronze),
+    var(--metallic-bronze-light),
+    var(--metallic-bronze),
+    var(--metallic-bronze-dark)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: metallic-shine 4.5s linear infinite;
+}
+
+.metallic-border {
+  position: relative;
+}
+
+.metallic-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    var(--metallic-gold-dark),
+    var(--metallic-gold),
+    var(--metallic-gold-light),
+    var(--metallic-silver),
+    var(--metallic-gold)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.metallic-border:hover::before {
+  opacity: 1;
+}
+
+.metallic-glow {
+  box-shadow: 
+    0 0 10px var(--metallic-gold),
+    0 0 20px rgba(212, 175, 55, 0.3),
+    0 0 30px rgba(184, 115, 51, 0.2);
+}
+
+.metallic-accent {
+  border-left: 2px solid var(--metallic-gold);
+  box-shadow: -2px 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.metallic-gradient-bg {
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.05) 0%,
+    transparent 25%,
+    transparent 75%,
+    rgba(192, 192, 192, 0.05) 100%
+  );
 }
 
