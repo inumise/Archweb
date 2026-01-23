@@ -3,15 +3,15 @@ import './App.css';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { ChevronDown, Mail, Phone, Award, Building2, Users, Calendar, Play, Globe, ArrowRight, Gem } from 'lucide-react';
+import { ChevronDown, Mail, Phone, Award, Play, Globe, ArrowRight, MapPin } from 'lucide-react';
 
 const translations = {
   cs: {
     nav: { profile: 'Profil', projects: 'Projekty', awards: 'Ocenění', videos: 'Videa', contact: 'Kontakt' },
     hero: { subtitle: 'Architektonické studio', tagline: 'Progresivní architektura od roku 2001', cta: 'Prozkoumat projekty' },
-    about: { title: 'O nás', description: 'Jakub Cigler Architekti (JCA) je architektonické studio, které zahájilo svou činnost v listopadu 2001 v Praze.', description2: 'Studio získalo za svou práci řadu ocenění doma i v zahraničí.', founded: 'Založeno', team: 'Členů týmu', projects: 'Realizovaných projektů', awards: 'Získaných ocenění' },
+    about: { title: 'O nás', description: 'Jakub Cigler Architekti (JCA) je architektonické studio, které zahájilo svou činnost v listopadu 2001 v Praze. Naše práce je charakterizována důrazem na kvalitu, inovaci a udržitelnost.', description2: 'Studio získalo za svou práci řadu ocenění doma i v zahraničí.', founded: 'Založeno', team: 'Členů týmu', projects: 'Realizovaných projektů', awards: 'Získaných ocenění' },
     projects: { title: 'Vybrané projekty', completed: 'Dokončeno', inProgress: 'V realizaci', area: 'Plocha', client: 'Klient' },
     awards: { title: 'Ocenění', subtitle: 'Mezinárodně uznávaná kvalita' },
     videos: { title: 'Videa', subtitle: 'Podívejte se na naše projekty' },
@@ -20,7 +20,7 @@ const translations = {
   en: {
     nav: { profile: 'Profile', projects: 'Projects', awards: 'Awards', videos: 'Videos', contact: 'Contact' },
     hero: { subtitle: 'Architectural Studio', tagline: 'Progressive Architecture Since 2001', cta: 'Explore Projects' },
-    about: { title: 'About Us', description: 'Jakub Cigler Architekti (JCA) is an architectural studio which started its activities in November 2001 in Prague.', description2: 'The studio has won several awards for its work, both at home and abroad.', founded: 'Founded', team: 'Team Members', projects: 'Completed Projects', awards: 'Awards Won' },
+    about: { title: 'About Us', description: 'Jakub Cigler Architekti (JCA) is an architectural studio which started its activities in November 2001 in Prague. Our work is characterized by emphasis on quality, innovation and sustainability.', description2: 'The studio has won several awards for its work, both at home and abroad.', founded: 'Founded', team: 'Team Members', projects: 'Completed Projects', awards: 'Awards Won' },
     projects: { title: 'Selected Projects', completed: 'Completed', inProgress: 'In Progress', area: 'Area', client: 'Client' },
     awards: { title: 'Awards', subtitle: 'Internationally Recognized Quality' },
     videos: { title: 'Videos', subtitle: 'Watch Our Projects' },
@@ -29,7 +29,7 @@ const translations = {
   zh: {
     nav: { profile: '简介', projects: '项目', awards: '奖项', videos: '视频', contact: '联系' },
     hero: { subtitle: '建筑设计工作室', tagline: '自2001年以来的前沿建筑设计', cta: '探索项目' },
-    about: { title: '关于我们', description: 'JCA是一家建筑设计工作室，于2001年11月在布拉格开始运营。', description2: '工作室在国内外获得了多项大奖。', founded: '成立于', team: '团队成员', projects: '完成项目', awards: '获得奖项' },
+    about: { title: '关于我们', description: 'JCA是一家建筑设计工作室，于2001年11月在布拉格开始运营。我们的工作以质量、创新和可持续性为特点。', description2: '工作室在国内外获得了多项大奖。', founded: '成立于', team: '团队成员', projects: '完成项目', awards: '获得奖项' },
     projects: { title: '精选项目', completed: '已完成', inProgress: '进行中', area: '面积', client: '客户' },
     awards: { title: '奖项', subtitle: '国际认可的品质' },
     videos: { title: '视频', subtitle: '观看我们的项目' },
@@ -38,7 +38,7 @@ const translations = {
   ar: {
     nav: { profile: 'الملف', projects: 'المشاريع', awards: 'الجوائز', videos: 'الفيديو', contact: 'اتصل' },
     hero: { subtitle: 'استوديو معماري', tagline: 'هندسة معمارية متقدمة منذ 2001', cta: 'استكشف المشاريع' },
-    about: { title: 'من نحن', description: 'استوديو معماري بدأ نشاطه في نوفمبر 2001 في براغ.', description2: 'حصل الاستوديو على العديد من الجوائز.', founded: 'تأسس', team: 'أعضاء الفريق', projects: 'المشاريع المنجزة', awards: 'الجوائز' },
+    about: { title: 'من نحن', description: 'استوديو معماري بدأ نشاطه في نوفمبر 2001 في براغ. يتميز عملنا بالتركيز على الجودة والابتكار والاستدامة.', description2: 'حصل الاستوديو على العديد من الجوائز.', founded: 'تأسس', team: 'أعضاء الفريق', projects: 'المشاريع المنجزة', awards: 'الجوائز' },
     projects: { title: 'مشاريع مختارة', completed: 'مكتمل', inProgress: 'قيد التنفيذ', area: 'المساحة', client: 'العميل' },
     awards: { title: 'الجوائز', subtitle: 'جودة معترف بها دوليا' },
     videos: { title: 'الفيديوهات', subtitle: 'شاهد مشاريعنا' },
@@ -52,14 +52,14 @@ const LanguageContext = createContext<{ lang: Language; setLang: (lang: Language
 const useLanguage = () => useContext(LanguageContext);
 
 const projects = [
-  { id: 1, name: 'Victoria Palace', description: 'Budova Victoria Palace je po téměř 90 letech první novostavbou na Vítězném náměstí.', descriptionEn: 'The Victoria Palace building is the first new building in almost 90 years on Victory Square.', year: '2024', status: 'completed', area: '12,390 m²', client: 'Penta Real Estate', image: 'https://images.unsplash.com/photo-1486718448742-163732cd1544?w=1920&q=95' },
-  { id: 2, name: 'Florentinum', description: 'Multifunkční administrativní komplex v centru Prahy.', descriptionEn: 'Multifunction administrative complex in Prague center.', year: '2013', status: 'completed', area: '126,000 m²', client: 'Penta Investments', image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&q=95' },
-  { id: 3, name: 'Quadrio', description: 'Rezidenční budova v historickém centru Prahy.', descriptionEn: 'Residential building in the historic center of Prague.', year: '2014', status: 'completed', area: '45,000 m²', client: 'CPI Property Group', image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1920&q=95' },
-  { id: 4, name: 'Churchill I.', description: 'Administrativní budova na náměstí W. Churchilla.', descriptionEn: 'Administrative building on W. Churchill square.', year: '2019', status: 'completed', area: '33,100 m²', client: 'Penta Real Estate', image: 'https://images.unsplash.com/photo-1448630360428-65456885c650?w=1920&q=95' },
-  { id: 5, name: 'Dynamica', description: 'Moderní administrativní budova.', descriptionEn: 'Modern administrative building.', year: '2018', status: 'completed', area: '25,000 m²', client: 'Penta Investments', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=95' },
-  { id: 6, name: 'Aviatica', description: 'Kancelářská budova certifikovaná LEED Gold.', descriptionEn: 'Office building certified LEED Gold.', year: '2015', status: 'completed', area: '27,000 m²', client: 'Penta Investments', image: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?w=1920&q=95' },
-  { id: 7, name: 'Masarykovo nádraží', description: 'Modernizace historického nádraží se Zaha Hadid Architects.', descriptionEn: 'Modernization of historic station with Zaha Hadid Architects.', year: '2025', status: 'in_progress', area: '150,000 m²', client: 'Penta Real Estate', image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1920&q=95' },
-  { id: 8, name: 'The Park', description: 'Víceúčelový komplex v Chodově.', descriptionEn: 'Multipurpose complex in Chodov.', year: '2011', status: 'completed', area: '190,000 m²', client: 'AIG/Lincoln', image: 'https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?w=1920&q=95' },
+  { id: 1, name: 'Victoria Palace', description: 'Budova Victoria Palace je po téměř 90 letech první novostavbou na Vítězném náměstí. Elegantní design kombinuje moderní architekturu s historickým kontextem.', descriptionEn: 'The Victoria Palace building is the first new building in almost 90 years on Victory Square. Elegant design combines modern architecture with historical context.', year: '2024', status: 'completed', area: '12,390 m²', client: 'Penta Real Estate', image: 'https://images.unsplash.com/photo-1486718448742-163732cd1544?w=1920&q=95' },
+  { id: 2, name: 'Florentinum', description: 'Multifunkční administrativní komplex v centru Prahy. Jeden z největších kancelářských projektů ve střední Evropě.', descriptionEn: 'Multifunction administrative complex in Prague center. One of the largest office projects in Central Europe.', year: '2013', status: 'completed', area: '126,000 m²', client: 'Penta Investments', image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&q=95' },
+  { id: 3, name: 'Quadrio', description: 'Rezidenční budova v historickém centru Prahy. Moderní bydlení v srdci města.', descriptionEn: 'Residential building in the historic center of Prague. Modern living in the heart of the city.', year: '2014', status: 'completed', area: '45,000 m²', client: 'CPI Property Group', image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1920&q=95' },
+  { id: 4, name: 'Churchill I.', description: 'Administrativní budova na náměstí W. Churchilla. Prémiové kancelářské prostory s výhledem na Prahu.', descriptionEn: 'Administrative building on W. Churchill square. Premium office spaces with views of Prague.', year: '2019', status: 'completed', area: '33,100 m²', client: 'Penta Real Estate', image: 'https://images.unsplash.com/photo-1448630360428-65456885c650?w=1920&q=95' },
+  { id: 5, name: 'Dynamica', description: 'Moderní administrativní budova s důrazem na udržitelnost a pracovní komfort.', descriptionEn: 'Modern administrative building with emphasis on sustainability and work comfort.', year: '2018', status: 'completed', area: '25,000 m²', client: 'Penta Investments', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=95' },
+  { id: 6, name: 'Aviatica', description: 'Kancelářská budova certifikovaná LEED Gold. Špičkový standard udržitelné architektury.', descriptionEn: 'Office building certified LEED Gold. Top standard of sustainable architecture.', year: '2015', status: 'completed', area: '27,000 m²', client: 'Penta Investments', image: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?w=1920&q=95' },
+  { id: 7, name: 'Masarykovo nádraží', description: 'Modernizace historického nádraží ve spolupráci se Zaha Hadid Architects. Ikonický projekt pro Prahu.', descriptionEn: 'Modernization of historic station with Zaha Hadid Architects. Iconic project for Prague.', year: '2025', status: 'in_progress', area: '150,000 m²', client: 'Penta Real Estate', image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1920&q=95' },
+  { id: 8, name: 'The Park', description: 'Víceúčelový komplex v Chodově. Kombinace kanceláří, obchodů a služeb.', descriptionEn: 'Multipurpose complex in Chodov. Combination of offices, shops and services.', year: '2011', status: 'completed', area: '190,000 m²', client: 'AIG/Lincoln', image: 'https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?w=1920&q=95' },
 ];
 
 const awards = [
@@ -120,7 +120,7 @@ function AnimatedCounter({ end, duration = 800, suffix = '' }: { end: number; du
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
-function CubisticCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+function CubisticCard({ children, className = '', clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }: { children: React.ReactNode; className?: string; clipPath?: string }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [transform, setTransform] = useState('');
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
@@ -128,65 +128,26 @@ function CubisticCard({ children, className = '' }: { children: React.ReactNode;
     const rect = cardRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
-    setTransform(`perspective(1000px) rotateX(${(y - 0.5) * -6}deg) rotateY(${(x - 0.5) * 6}deg) scale3d(1.02, 1.02, 1.02)`);
+    setTransform(`perspective(1000px) rotateX(${(y - 0.5) * -5}deg) rotateY(${(x - 0.5) * 5}deg) scale3d(1.02, 1.02, 1.02)`);
   }, []);
   const handleMouseLeave = useCallback(() => {
     setTransform('perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)');
   }, []);
   return (
-    <div ref={cardRef} className={`relative transition-all duration-500 ease-out ${className}`} style={{ transform, transformStyle: 'preserve-3d' }} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+    <div ref={cardRef} className={`transition-all duration-500 ease-out ${className}`} style={{ transform, transformStyle: 'preserve-3d', clipPath }} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
       {children}
     </div>
   );
 }
 
-function MarbleBackground() {
-  return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0" style={{ 
-        backgroundImage: 'url(https://images.unsplash.com/photo-1617791160505-6f00504e3519?w=1920&q=90)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        filter: 'brightness(1.1) contrast(0.95)'
-      }} />
-      <div className="absolute inset-0" style={{ 
-        background: 'linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(250,248,245,0.5) 50%, rgba(255,255,255,0.7) 100%)' 
-      }} />
-      <div className="absolute top-20 left-10 w-32 h-32 opacity-10" style={{ 
-        background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)',
-        clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
-        transform: 'rotate(15deg)'
-      }} />
-      <div className="absolute top-40 right-20 w-24 h-24 opacity-8" style={{ 
-        background: 'linear-gradient(45deg, #1F2937 0%, #374151 100%)',
-        clipPath: 'polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)',
-        transform: 'rotate(-10deg)'
-      }} />
-    </div>
-  );
-}
-
-function CubisticShapes() {
+function GeometricOverlay() {
   const scrollY = useParallax();
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      <div className="absolute top-1/4 right-10 w-20 h-20" style={{ 
-        transform: `translateY(${scrollY * 0.1}px) rotate(${scrollY * 0.02}deg)`,
-        background: 'linear-gradient(135deg, rgba(184,92,56,0.15) 0%, rgba(139,69,19,0.1) 100%)',
-        boxShadow: '10px 10px 30px rgba(0,0,0,0.15)',
-        clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
-      }} />
-      <div className="absolute top-1/2 left-5 w-16 h-24" style={{ 
-        transform: `translateY(${scrollY * -0.08}px) rotate(-5deg)`,
-        background: 'linear-gradient(180deg, rgba(31,41,55,0.12) 0%, rgba(55,65,81,0.08) 100%)',
-        boxShadow: '8px 8px 25px rgba(0,0,0,0.12)',
-        clipPath: 'polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)'
-      }} />
-      <div className="absolute bottom-1/3 right-1/4 w-12 h-12" style={{ 
-        transform: `translateY(${scrollY * 0.15}px) rotate(45deg)`,
-        background: 'linear-gradient(45deg, rgba(212,165,116,0.2) 0%, rgba(184,149,110,0.15) 100%)',
-        boxShadow: '6px 6px 20px rgba(0,0,0,0.1)'
-      }} />
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <div className="absolute top-20 left-10 w-64 h-64 opacity-5" style={{ transform: `translateY(${scrollY * 0.1}px) rotate(${scrollY * 0.02}deg)`, background: 'linear-gradient(135deg, #b87333 0%, transparent 70%)', clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)' }} />
+      <div className="absolute top-1/3 right-20 w-48 h-48 opacity-5" style={{ transform: `translateY(${scrollY * -0.08}px) rotate(-15deg)`, background: 'linear-gradient(45deg, #4a5568 0%, transparent 70%)', clipPath: 'polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)' }} />
+      <div className="absolute bottom-1/4 left-1/4 w-32 h-32 opacity-5" style={{ transform: `translateY(${scrollY * 0.15}px) rotate(45deg)`, background: 'linear-gradient(180deg, #1a1a1a 0%, transparent 70%)', clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }} />
+      <div className="absolute top-2/3 right-1/3 w-40 h-40 opacity-3" style={{ transform: `translateY(${scrollY * -0.12}px) rotate(30deg)`, background: 'linear-gradient(225deg, #b87333 0%, transparent 60%)', clipPath: 'polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%)' }} />
     </div>
   );
 }
@@ -196,36 +157,29 @@ function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress(prev => {
-        if (prev >= 100) { clearInterval(interval); setTimeout(onComplete, 500); return 100; }
-        return prev + 2;
+        if (prev >= 100) { clearInterval(interval); setTimeout(onComplete, 400); return 100; }
+        return prev + Math.random() * 12;
       });
-    }, 30);
+    }, 80);
     return () => clearInterval(interval);
   }, [onComplete]);
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ 
-      backgroundImage: 'url(https://images.unsplash.com/photo-1617791160505-6f00504e3519?w=1920&q=90)',
-      backgroundSize: 'cover'
-    }}>
-      <div className="absolute inset-0" style={{ background: 'rgba(255,255,255,0.85)' }} />
-      <div className="absolute top-20 left-20 w-16 h-16 animate-pulse" style={{ 
-        background: 'linear-gradient(135deg, #B85C38 0%, #8B4513 100%)',
-        clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
-        opacity: 0.3
-      }} />
-      <div className="relative z-10 text-center">
-        <Gem className="w-16 h-16 mx-auto mb-8" style={{ color: '#8B4513', filter: 'drop-shadow(0 0 20px rgba(139,69,19,0.4))' }} />
-        <h1 className="text-5xl font-bold tracking-wider mb-2" style={{ 
-          background: 'repeating-linear-gradient(0deg, #B85C38 0px, #B85C38 8px, #8B4513 8px, #8B4513 10px)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          filter: 'drop-shadow(3px 3px 6px rgba(0,0,0,0.3))'
-        }}>JAKUB CIGLER</h1>
-        <p className="text-sm tracking-widest mb-8" style={{ color: '#8B4513' }}>ARCHITEKTI</p>
-        <div className="w-48 h-2 mx-auto overflow-hidden" style={{ background: 'rgba(139,69,19,0.2)', clipPath: 'polygon(0% 0%, 100% 0%, 95% 100%, 5% 100%)' }}>
-          <div className="h-full transition-all duration-300" style={{ width: `${progress}%`, background: 'linear-gradient(90deg, #B85C38, #8B4513, #D4A574)' }} />
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950">
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 opacity-10" style={{ background: 'linear-gradient(135deg, #b87333 0%, transparent 50%)', clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)', animation: 'pulse 3s ease-in-out infinite' }} />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 opacity-10" style={{ background: 'linear-gradient(45deg, #4a5568 0%, transparent 50%)', clipPath: 'polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)', animation: 'pulse 3s ease-in-out infinite 0.5s' }} />
+      </div>
+      <div className="relative text-center z-10">
+        <div className="relative mb-8">
+          <h1 className="text-5xl md:text-7xl font-extralight tracking-widest text-white">JCA</h1>
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent via-amber-600 to-transparent" />
         </div>
-        <p className="mt-4 text-sm font-medium" style={{ color: '#6B7280' }}>{progress}%</p>
+        <p className="text-neutral-500 tracking-widest text-xs mb-10 uppercase">Jakub Cigler Architekti</p>
+        <div className="relative w-56 h-1 mx-auto">
+          <div className="absolute inset-0 bg-neutral-800" style={{ clipPath: 'polygon(0 0, 100% 0, 98% 100%, 2% 100%)' }} />
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-700 via-amber-600 to-amber-700 transition-all duration-200" style={{ width: `${Math.min(progress, 100)}%`, clipPath: 'polygon(0 0, 100% 0, 98% 100%, 2% 100%)' }} />
+        </div>
+        <p className="text-neutral-600 text-xs mt-4 font-light">{Math.min(Math.round(progress), 100)}%</p>
       </div>
     </div>
   );
@@ -240,30 +194,24 @@ function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const languages: { code: Language; label: string }[] = [{ code: 'cs', label: 'CS' }, { code: 'en', label: 'EN' }, { code: 'zh', label: 'ZH' }, { code: 'ar', label: 'AR' }];
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${scrolled ? 'py-3' : 'py-6'}`} style={{ 
-      background: scrolled ? 'rgba(255,255,255,0.9)' : 'transparent', 
-      backdropFilter: scrolled ? 'blur(20px)' : 'none', 
-      borderBottom: scrolled ? '2px solid rgba(139,69,19,0.2)' : 'none',
-      clipPath: scrolled ? 'polygon(0% 0%, 100% 0%, 98% 100%, 2% 100%)' : 'none'
-    }} dir={isRTL ? 'rtl' : 'ltr'}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-transparent'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+      <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Gem className="w-8 h-8" style={{ color: '#8B4513' }} />
-          <span className="text-xl font-bold tracking-wider" style={{ color: '#1F2937' }}>JCA</span>
+          <div className="relative">
+            <span className={`text-xl font-extralight tracking-widest ${scrolled ? 'text-neutral-900' : 'text-white'}`}>JCA</span>
+            <div className={`absolute -bottom-1 left-0 w-full h-px ${scrolled ? 'bg-amber-600' : 'bg-amber-500'}`} style={{ clipPath: 'polygon(0 0, 100% 0, 90% 100%, 10% 100%)' }} />
+          </div>
         </div>
-        <div className="hidden md:flex items-center gap-8">
-          {[{ key: 'profile', id: 'about' }, { key: 'projects', id: 'projects' }, { key: 'awards', id: 'awards' }, { key: 'videos', id: 'videos' }, { key: 'contact', id: 'contact' }].map(item => (
-            <button key={item.key} onClick={() => scrollTo(item.id)} className="text-sm font-medium tracking-wide transition-all duration-300 hover:opacity-100 opacity-70" style={{ color: '#374151' }}>{t.nav[item.key as keyof typeof t.nav]}</button>
+        <div className="hidden md:flex items-center gap-10">
+          {Object.entries(t.nav).map(([key, value]) => (
+            <button key={key} onClick={() => scrollTo(key === 'profile' ? 'about' : key)} className={`text-sm tracking-wider transition-all hover:text-amber-600 ${scrolled ? 'text-neutral-600' : 'text-white/80'}`}>{value}</button>
           ))}
         </div>
         <div className="flex items-center gap-1">
-          {(['cs', 'en', 'zh', 'ar'] as Language[]).map(l => (
-            <button key={l} onClick={() => setLang(l)} className={`px-3 py-1 text-xs font-medium transition-all duration-300 ${lang === l ? 'text-white' : 'opacity-60 hover:opacity-100'}`} style={{ 
-              background: lang === l ? 'linear-gradient(135deg, #B85C38, #8B4513)' : 'transparent', 
-              color: lang === l ? 'white' : '#374151',
-              clipPath: 'polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%)'
-            }}>{l.toUpperCase()}</button>
+          {languages.map(l => (
+            <button key={l.code} onClick={() => setLang(l.code)} className={`px-2 py-1 text-xs tracking-wider transition-all ${lang === l.code ? (scrolled ? 'text-amber-600 font-medium' : 'text-amber-500 font-medium') : (scrolled ? 'text-neutral-400' : 'text-white/40')} hover:text-amber-600`}>{l.label}</button>
           ))}
         </div>
       </div>
@@ -276,36 +224,35 @@ function HeroSection() {
   const scrollY = useParallax();
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
+    <section className="relative h-screen flex items-center justify-center overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="absolute inset-0">
-        <img src="https://images.unsplash.com/photo-1617791160505-6f00504e3519?w=1920&q=95" alt="Marble texture" className="w-full h-full object-cover" style={{ transform: `translateY(${scrollY * 0.2}px)`, filter: 'brightness(1.1)' }} />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(250,248,245,0.7) 50%, rgba(255,255,255,0.8) 100%)' }} />
+        <img src="https://images.unsplash.com/photo-1486718448742-163732cd1544?w=1920&q=95" alt="Modern architecture" className="w-full h-full object-cover" style={{ transform: `scale(1.1) translateY(${scrollY * 0.15}px)` }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(184,115,51,0.1) 0%, transparent 50%, rgba(74,85,104,0.1) 100%)' }} />
       </div>
-      <CubisticShapes />
-      <div className="absolute top-24 left-8 w-28 h-28 opacity-30" style={{ transform: `translateY(${scrollY * 0.15}px) rotate(-5deg)` }}>
-        <img src="https://images.unsplash.com/photo-1486718448742-163732cd1544?w=400&q=90" alt="" className="w-full h-full object-cover" style={{ clipPath: 'polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%)', boxShadow: '10px 10px 30px rgba(0,0,0,0.2)' }} />
-      </div>
+      <div className="absolute top-1/4 left-10 w-32 h-32 border border-white/10" style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)', transform: `translateY(${scrollY * 0.2}px) rotate(${scrollY * 0.05}deg)` }} />
+      <div className="absolute bottom-1/3 right-16 w-24 h-24 border border-amber-500/20" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%)', transform: `translateY(${scrollY * -0.15}px)` }} />
+      <div className="absolute top-1/2 right-1/4 w-16 h-16 bg-amber-600/10" style={{ clipPath: 'polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)', transform: `translateY(${scrollY * 0.1}px) rotate(-15deg)` }} />
       <div className="relative z-10 text-center px-6 max-w-5xl">
-        <Gem className="w-14 h-14 mx-auto mb-6" style={{ color: '#8B4513', filter: 'drop-shadow(0 4px 8px rgba(139,69,19,0.3))' }} />
-        <h1 className="text-6xl md:text-8xl font-black tracking-wider mb-4" style={{
-          background: 'repeating-linear-gradient(0deg, #B85C38 0px, #B85C38 6px, #8B4513 6px, #8B4513 8px, #A0522D 8px, #A0522D 14px, #654321 14px, #654321 16px)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          filter: 'drop-shadow(4px 4px 0 rgba(101,67,33,0.4)) drop-shadow(8px 8px 15px rgba(0,0,0,0.3))',
-          letterSpacing: '0.1em'
-        }}>JAKUB CIGLER</h1>
-        <p className="text-lg tracking-widest mb-2 font-semibold" style={{ color: '#8B4513' }}>{t.hero.subtitle.toUpperCase()}</p>
-        <p className="text-lg mb-12 font-light" style={{ color: '#6B7280' }}>{t.hero.tagline}</p>
-        <Button onClick={() => scrollTo('projects')} className="group px-8 py-6 text-white font-medium transition-all duration-500 hover:scale-105" style={{ 
-          background: 'linear-gradient(135deg, #B85C38, #8B4513)',
-          boxShadow: '0 15px 35px -10px rgba(139,69,19,0.4), 8px 8px 0 rgba(101,67,33,0.3)',
-          clipPath: 'polygon(5% 0%, 95% 0%, 100% 50%, 95% 100%, 5% 100%, 0% 50%)'
-        }}>
-          {t.hero.cta} <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        <div className="mb-8">
+          <div className="inline-block relative">
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-extralight tracking-wider text-white" style={{ textShadow: '0 4px 30px rgba(0,0,0,0.3)' }}>
+              JAKUB CIGLER
+            </h1>
+            <div className="absolute -bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent" />
+          </div>
+        </div>
+        <p className="text-base md:text-lg tracking-widest text-amber-500/90 mb-2 font-light uppercase">{t.hero.subtitle}</p>
+        <p className="text-sm text-white/50 mb-14 font-light tracking-wide">{t.hero.tagline}</p>
+        <Button onClick={() => scrollTo('projects')} className="group bg-transparent border border-white/30 text-white hover:bg-white hover:text-neutral-900 px-10 py-7 text-sm tracking-widest font-light transition-all duration-500" style={{ clipPath: 'polygon(3% 0%, 97% 0%, 100% 50%, 97% 100%, 3% 100%, 0% 50%)' }}>
+          {t.hero.cta.toUpperCase()} <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
         </Button>
       </div>
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <ChevronDown className="w-8 h-8" style={{ color: '#8B4513' }} />
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+        <div className="flex flex-col items-center gap-2">
+          <div className="w-px h-12 bg-gradient-to-b from-transparent via-white/30 to-transparent" />
+          <ChevronDown className="w-5 h-5 text-white/40 animate-bounce" />
+        </div>
       </div>
     </section>
   );
@@ -314,35 +261,36 @@ function HeroSection() {
 function AboutSection() {
   const { t, isRTL } = useLanguage();
   const { ref, isInView } = useInView();
-  const stats = [{ icon: Calendar, value: 2001, label: t.about.founded }, { icon: Users, value: 50, suffix: '+', label: t.about.team }, { icon: Building2, value: 8, label: t.about.projects }, { icon: Award, value: 8, label: t.about.awards }];
   return (
-    <section id="about" className="relative py-32 overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
-      <MarbleBackground />
-      <CubisticShapes />
-      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className={`relative transition-all duration-1000 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'}`}>
-            <div className="absolute -inset-4" style={{ background: 'linear-gradient(135deg, rgba(184,92,56,0.2), rgba(139,69,19,0.1))', clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)', filter: 'blur(2px)' }} />
-            <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=95" alt="JCA Office" className="relative w-full h-96 object-cover" style={{ clipPath: 'polygon(3% 0%, 97% 0%, 100% 100%, 0% 100%)', boxShadow: '15px 15px 0 rgba(139,69,19,0.2), 25px 25px 50px rgba(0,0,0,0.15)' }} />
+    <section id="about" className="py-32 bg-neutral-50 relative overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
+      <div className="absolute top-0 right-0 w-1/3 h-full opacity-5" style={{ background: 'linear-gradient(180deg, #b87333 0%, transparent 100%)', clipPath: 'polygon(100% 0, 100% 100%, 0 100%)' }} />
+      <div ref={ref} className={`max-w-6xl mx-auto px-6 relative z-10 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="grid md:grid-cols-2 gap-20 items-center">
+          <div>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-px bg-amber-600" />
+              <span className="text-amber-600 text-sm tracking-widest uppercase">Studio</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extralight text-neutral-900 mb-10 tracking-wide leading-tight">{t.about.title}</h2>
+            <p className="text-neutral-600 leading-relaxed mb-6 text-lg font-light">{t.about.description}</p>
+            <p className="text-neutral-500 leading-relaxed font-light">{t.about.description2}</p>
           </div>
-          <div className={`transition-all duration-1000 delay-300 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'}`}>
-            <div className="flex items-center gap-3 mb-6">
-              <Gem className="w-8 h-8" style={{ color: '#8B4513' }} />
-              <h2 className="text-4xl font-bold tracking-wide" style={{ color: '#1F2937' }}>{t.about.title}</h2>
-            </div>
-            <p className="text-lg leading-relaxed mb-4" style={{ color: '#6B7280' }}>{t.about.description}</p>
-            <p className="text-lg leading-relaxed mb-8" style={{ color: '#6B7280' }}>{t.about.description2}</p>
-            <div className="grid grid-cols-2 gap-4">
-              {stats.map((stat, i) => (
-                <CubisticCard key={i}>
-                  <div className="p-6 transition-all duration-300" style={{ background: 'rgba(255,255,255,0.8)', backdropFilter: 'blur(10px)', border: '2px solid rgba(139,69,19,0.2)', clipPath: 'polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%)', boxShadow: '8px 8px 0 rgba(139,69,19,0.1)' }}>
-                    <stat.icon className="w-6 h-6 mb-3" style={{ color: '#8B4513' }} />
-                    <div className="text-3xl font-bold mb-1" style={{ color: '#1F2937' }}><AnimatedCounter end={stat.value} suffix={stat.suffix || ''} /></div>
-                    <div className="text-sm font-medium" style={{ color: '#9CA3AF' }}>{stat.label}</div>
+          <div className="grid grid-cols-2 gap-6">
+            {[
+              { value: 2001, label: t.about.founded, suffix: '' },
+              { value: 50, label: t.about.team, suffix: '+' },
+              { value: 8, label: t.about.projects, suffix: '' },
+              { value: 8, label: t.about.awards, suffix: '' },
+            ].map((stat, i) => (
+              <CubisticCard key={i} className="group" clipPath={i % 2 === 0 ? 'polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%)' : 'polygon(0 0, 100% 0, 100% 100%, 10% 100%, 0 90%)'}>
+                <div className="bg-white p-8 shadow-sm hover:shadow-lg transition-shadow duration-500 h-full">
+                  <div className="text-4xl font-extralight text-neutral-900 mb-3 group-hover:text-amber-600 transition-colors duration-300">
+                    <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                   </div>
-                </CubisticCard>
-              ))}
-            </div>
+                  <div className="text-xs text-neutral-500 tracking-wider uppercase">{stat.label}</div>
+                </div>
+              </CubisticCard>
+            ))}
           </div>
         </div>
       </div>
@@ -353,52 +301,72 @@ function AboutSection() {
 function ProjectsSection() {
   const { t, lang, isRTL } = useLanguage();
   const { ref, isInView } = useInView();
+  const clipPaths = [
+    'polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%)',
+    'polygon(0 0, 100% 0, 100% 100%, 5% 100%, 0 95%)',
+    'polygon(5% 0, 100% 0, 100% 100%, 0 100%, 0 5%)',
+    'polygon(0 0, 95% 0, 100% 5%, 100% 100%, 0 100%)',
+  ];
   return (
-    <section id="projects" className="relative py-32" dir={isRTL ? 'rtl' : 'ltr'}>
-      <MarbleBackground />
-      <CubisticShapes />
-      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <Gem className="w-10 h-10 mx-auto mb-4" style={{ color: '#8B4513' }} />
-          <h2 className="text-4xl font-bold tracking-wide mb-4" style={{ color: '#1F2937' }}>{t.projects.title}</h2>
-          <div className="w-32 h-2 mx-auto" style={{ background: 'linear-gradient(90deg, #B85C38, #8B4513, #D4A574)', clipPath: 'polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)' }} />
+    <section id="projects" className="py-32 bg-white relative" dir={isRTL ? 'rtl' : 'ltr'}>
+      <div className="absolute bottom-0 left-0 w-1/4 h-1/2 opacity-5" style={{ background: 'linear-gradient(45deg, #4a5568 0%, transparent 100%)', clipPath: 'polygon(0 100%, 100% 100%, 0 0)' }} />
+      <div ref={ref} className={`max-w-7xl mx-auto px-6 relative z-10 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="text-center mb-20">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="w-12 h-px bg-amber-600" />
+            <span className="text-amber-600 text-sm tracking-widest uppercase">Portfolio</span>
+            <div className="w-12 h-px bg-amber-600" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-extralight text-neutral-900 tracking-wide">{t.projects.title}</h2>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, i) => (
-            <Dialog key={project.id}>
-              <DialogTrigger asChild>
-                <div className={`group cursor-pointer transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`} style={{ transitionDelay: `${i * 100}ms` }}>
-                  <CubisticCard className="group">
-                    <Card className="overflow-hidden border-0" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(10px)', clipPath: 'polygon(0% 0%, 100% 0%, 97% 100%, 3% 100%)', boxShadow: '10px 10px 0 rgba(139,69,19,0.15), 20px 20px 40px rgba(0,0,0,0.1)' }}>
-                      <div className="relative h-64 overflow-hidden">
-                        <img src={project.image} alt={project.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(255,255,255,0.95) 0%, transparent 50%)' }} />
-                        <div className="absolute bottom-4 left-4 right-4">
-                          <span className="inline-block px-4 py-1 text-xs font-medium text-white" style={{ background: project.status === 'completed' ? 'linear-gradient(135deg, #8B4513, #654321)' : 'linear-gradient(135deg, #B85C38, #A0522D)', clipPath: 'polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%)' }}>{project.status === 'completed' ? t.projects.completed : t.projects.inProgress} {project.year}</span>
-                        </div>
+          {projects.map((project, index) => (
+            <CubisticCard key={project.id} className="group" clipPath={clipPaths[index % clipPaths.length]}>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Card className="overflow-hidden cursor-pointer border-0 shadow-sm hover:shadow-2xl transition-all duration-700 bg-white" style={{ clipPath: clipPaths[index % clipPaths.length] }}>
+                    <div className="relative h-72 overflow-hidden">
+                      <img src={project.image} alt={project.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(135deg, rgba(184,115,51,0.2) 0%, transparent 50%)' }} />
+                      <div className="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 className="text-xl font-light text-white mb-2 tracking-wide">{project.name}</h3>
+                        <p className="text-white/60 text-sm font-light">{project.year} · {project.area}</p>
                       </div>
-                      <CardContent className="p-6">
-                        <h3 className="text-xl font-bold mb-2" style={{ color: '#1F2937' }}>{project.name}</h3>
-                        <p className="text-sm line-clamp-2" style={{ color: '#6B7280' }}>{lang === 'en' ? project.descriptionEn : project.description}</p>
-                      </CardContent>
-                    </Card>
-                  </CubisticCard>
-                </div>
-              </DialogTrigger>
-              <DialogContent className="max-w-4xl border-0" style={{ background: 'rgba(255,255,255,0.98)', backdropFilter: 'blur(20px)', clipPath: 'polygon(2% 0%, 98% 0%, 100% 100%, 0% 100%)' }}>
-                <DialogHeader><DialogTitle className="text-2xl font-bold" style={{ color: '#1F2937' }}>{project.name}</DialogTitle></DialogHeader>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <img src={project.image} alt={project.name} className="w-full h-64 object-cover" style={{ clipPath: 'polygon(3% 0%, 97% 0%, 100% 100%, 0% 100%)' }} />
-                  <div>
-                    <p className="mb-4" style={{ color: '#6B7280' }}>{lang === 'en' ? project.descriptionEn : project.description}</p>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between p-2" style={{ background: 'rgba(139,69,19,0.05)' }}><span style={{ color: '#9CA3AF' }}>{t.projects.area}:</span><span style={{ color: '#8B4513', fontWeight: 600 }}>{project.area}</span></div>
-                      <div className="flex justify-between p-2" style={{ background: 'rgba(139,69,19,0.05)' }}><span style={{ color: '#9CA3AF' }}>{t.projects.client}:</span><span style={{ color: '#8B4513', fontWeight: 600 }}>{project.client}</span></div>
+                      {project.status === 'in_progress' && (
+                        <div className="absolute top-4 right-4 bg-amber-600 px-4 py-1.5 text-xs tracking-wider text-white uppercase" style={{ clipPath: 'polygon(0 0, 100% 0, 95% 100%, 5% 100%)' }}>{t.projects.inProgress}</div>
+                      )}
+                    </div>
+                  </Card>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl p-0 overflow-hidden border-0" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 97%, 97% 100%, 0 100%)' }}>
+                  <div className="relative h-80">
+                    <img src={project.image} alt={project.name} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  </div>
+                  <div className="p-10 bg-white">
+                    <DialogHeader>
+                      <DialogTitle className="text-3xl font-extralight text-neutral-900 mb-6 tracking-wide">{project.name}</DialogTitle>
+                    </DialogHeader>
+                    <p className="text-neutral-600 leading-relaxed mb-8 font-light text-lg">{lang === 'cs' ? project.description : project.descriptionEn}</p>
+                    <div className="grid grid-cols-3 gap-8 text-sm">
+                      <div className="border-l-2 border-amber-600 pl-4">
+                        <span className="text-neutral-400 block mb-1 text-xs uppercase tracking-wider">{t.projects.area}</span>
+                        <span className="text-neutral-900 font-light">{project.area}</span>
+                      </div>
+                      <div className="border-l-2 border-amber-600 pl-4">
+                        <span className="text-neutral-400 block mb-1 text-xs uppercase tracking-wider">{t.projects.client}</span>
+                        <span className="text-neutral-900 font-light">{project.client}</span>
+                      </div>
+                      <div className="border-l-2 border-amber-600 pl-4">
+                        <span className="text-neutral-400 block mb-1 text-xs uppercase tracking-wider">{project.status === 'completed' ? t.projects.completed : t.projects.inProgress}</span>
+                        <span className="text-neutral-900 font-light">{project.year}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </DialogContent>
-            </Dialog>
+                </DialogContent>
+              </Dialog>
+            </CubisticCard>
           ))}
         </div>
       </div>
@@ -410,22 +378,22 @@ function AwardsSection() {
   const { t, isRTL } = useLanguage();
   const { ref, isInView } = useInView();
   return (
-    <section id="awards" className="relative py-32 overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
-      <MarbleBackground />
-      <CubisticShapes />
-      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <Award className="w-10 h-10 mx-auto mb-4" style={{ color: '#8B4513' }} />
-          <h2 className="text-4xl font-bold tracking-wide mb-2" style={{ color: '#1F2937' }}>{t.awards.title}</h2>
-          <p className="font-medium" style={{ color: '#8B4513' }}>{t.awards.subtitle}</p>
+    <section id="awards" className="py-32 bg-neutral-900 relative overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
+      <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(184,115,51,0.1) 50px, rgba(184,115,51,0.1) 100px)' }} />
+      <div className="absolute top-0 left-0 w-1/2 h-full opacity-10" style={{ background: 'linear-gradient(135deg, #b87333 0%, transparent 50%)', clipPath: 'polygon(0 0, 50% 0, 0 100%)' }} />
+      <div ref={ref} className={`max-w-6xl mx-auto px-6 relative z-10 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="text-center mb-20">
+          <Award className="w-10 h-10 text-amber-500/50 mx-auto mb-6" />
+          <h2 className="text-4xl md:text-5xl font-extralight text-white mb-4 tracking-wide">{t.awards.title}</h2>
+          <p className="text-white/40 font-light tracking-wide">{t.awards.subtitle}</p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {awards.map((award, i) => (
-            <CubisticCard key={i}>
-              <div className={`p-6 transition-all duration-500 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: `${i * 100}ms`, background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(10px)', border: '2px solid rgba(139,69,19,0.15)', clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)', boxShadow: '6px 6px 0 rgba(139,69,19,0.1)' }}>
-                <div className="text-sm font-bold mb-2" style={{ color: '#8B4513' }}>{award.year}</div>
-                <h3 className="font-semibold mb-2" style={{ color: '#1F2937' }}>{award.title}</h3>
-                <p className="text-sm" style={{ color: '#9CA3AF' }}>{award.project}</p>
+          {awards.map((award, index) => (
+            <CubisticCard key={index} clipPath={index % 2 === 0 ? 'polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%)' : 'polygon(0 0, 100% 0, 100% 100%, 5% 100%, 0 95%)'}>
+              <div className="p-6 border border-white/10 hover:border-amber-500/30 bg-white/5 backdrop-blur-sm transition-all duration-500 h-full group" style={{ clipPath: index % 2 === 0 ? 'polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%)' : 'polygon(0 0, 100% 0, 100% 100%, 5% 100%, 0 95%)' }}>
+                <div className="text-3xl font-extralight text-amber-500/60 mb-4 group-hover:text-amber-500 transition-colors duration-300">{award.year}</div>
+                <h3 className="text-white font-light mb-2 tracking-wide">{award.title}</h3>
+                <p className="text-white/40 text-sm font-light">{award.project}</p>
               </div>
             </CubisticCard>
           ))}
@@ -439,34 +407,36 @@ function VideosSection() {
   const { t, isRTL } = useLanguage();
   const { ref, isInView } = useInView();
   return (
-    <section id="videos" className="relative py-32" dir={isRTL ? 'rtl' : 'ltr'}>
-      <MarbleBackground />
-      <CubisticShapes />
-      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <Play className="w-10 h-10 mx-auto mb-4" style={{ color: '#8B4513' }} />
-          <h2 className="text-4xl font-bold tracking-wide mb-2" style={{ color: '#1F2937' }}>{t.videos.title}</h2>
-          <p className="font-medium" style={{ color: '#8B4513' }}>{t.videos.subtitle}</p>
+    <section id="videos" className="py-32 bg-neutral-50 relative" dir={isRTL ? 'rtl' : 'ltr'}>
+      <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-5" style={{ background: 'linear-gradient(225deg, #4a5568 0%, transparent 100%)', clipPath: 'polygon(100% 0, 100% 100%, 0 0)' }} />
+      <div ref={ref} className={`max-w-6xl mx-auto px-6 relative z-10 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="text-center mb-20">
+          <Play className="w-10 h-10 text-neutral-300 mx-auto mb-6" />
+          <h2 className="text-4xl md:text-5xl font-extralight text-neutral-900 mb-4 tracking-wide">{t.videos.title}</h2>
+          <p className="text-neutral-500 font-light tracking-wide">{t.videos.subtitle}</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {videos.map((video, i) => (
+        <div className="grid md:grid-cols-3 gap-10">
+          {videos.map((video, index) => (
             <Dialog key={video.id}>
               <DialogTrigger asChild>
-                <div className={`group cursor-pointer transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`} style={{ transitionDelay: `${i * 150}ms` }}>
-                  <div className="relative h-48 overflow-hidden mb-4" style={{ clipPath: 'polygon(3% 0%, 97% 0%, 100% 100%, 0% 100%)', boxShadow: '10px 10px 0 rgba(139,69,19,0.15), 20px 20px 40px rgba(0,0,0,0.1)' }}>
-                    <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                    <div className="absolute inset-0 flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.3)', backdropFilter: 'blur(2px)' }}>
-                      <div className="w-16 h-16 flex items-center justify-center transition-all duration-300 group-hover:scale-110" style={{ background: 'linear-gradient(135deg, #B85C38, #8B4513)', clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)', boxShadow: '0 10px 30px -10px rgba(139,69,19,0.5)' }}>
-                        <Play className="w-6 h-6 text-white ml-1" fill="white" />
+                <CubisticCard className="group cursor-pointer" clipPath={index === 1 ? 'polygon(0 5%, 100% 0, 100% 100%, 0 95%)' : 'polygon(0 0, 100% 5%, 100% 95%, 0 100%)'}>
+                  <div className="relative h-56 overflow-hidden mb-5" style={{ clipPath: index === 1 ? 'polygon(0 5%, 100% 0, 100% 100%, 0 95%)' : 'polygon(0 0, 100% 5%, 100% 95%, 0 100%)' }}>
+                    <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-16 h-16 bg-white/90 group-hover:bg-amber-500 group-hover:scale-110 transition-all duration-300 flex items-center justify-center" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}>
+                        <Play className="w-6 h-6 text-neutral-900 group-hover:text-white ml-1 transition-colors duration-300" />
                       </div>
                     </div>
                   </div>
-                  <h3 className="font-semibold mb-1" style={{ color: '#1F2937' }}>{video.title}</h3>
-                  <p className="text-sm" style={{ color: '#9CA3AF' }}>{video.description}</p>
-                </div>
+                  <h3 className="text-neutral-900 font-light mb-1 tracking-wide group-hover:text-amber-600 transition-colors duration-300">{video.title}</h3>
+                  <p className="text-neutral-500 text-sm font-light">{video.description}</p>
+                </CubisticCard>
               </DialogTrigger>
-              <DialogContent className="max-w-4xl p-0 border-0 overflow-hidden" style={{ background: 'rgba(255,255,255,0.98)', backdropFilter: 'blur(20px)', clipPath: 'polygon(1% 0%, 99% 0%, 100% 100%, 0% 100%)' }}>
-                <div className="aspect-video"><iframe src={video.embedUrl} className="w-full h-full" allowFullScreen /></div>
+              <DialogContent className="max-w-4xl p-0 overflow-hidden border-0" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 97%, 97% 100%, 0 100%)' }}>
+                <div className="aspect-video bg-black">
+                  <iframe src={video.embedUrl} title={video.title} className="w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                </div>
               </DialogContent>
             </Dialog>
           ))}
@@ -480,55 +450,70 @@ function ContactSection() {
   const { t, isRTL } = useLanguage();
   const { ref, isInView } = useInView();
   return (
-    <section id="contact" className="relative py-32" dir={isRTL ? 'rtl' : 'ltr'}>
-      <MarbleBackground />
-      <CubisticShapes />
-      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16">
-          <div className={`transition-all duration-1000 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'}`}>
-            <div className="flex items-center gap-3 mb-6">
-              <Mail className="w-8 h-8" style={{ color: '#8B4513' }} />
-              <h2 className="text-4xl font-bold tracking-wide" style={{ color: '#1F2937' }}>{t.contact.title}</h2>
+    <section id="contact" className="py-32 bg-white relative overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
+      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 opacity-5" style={{ background: 'linear-gradient(315deg, #b87333 0%, transparent 70%)', clipPath: 'polygon(100% 100%, 0 100%, 100% 0)' }} />
+      <div ref={ref} className={`max-w-6xl mx-auto px-6 relative z-10 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="grid md:grid-cols-2 gap-20">
+          <div>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-px bg-amber-600" />
+              <span className="text-amber-600 text-sm tracking-widest uppercase">Contact</span>
             </div>
-            <p className="text-lg mb-8 font-medium" style={{ color: '#8B4513' }}>{t.contact.subtitle}</p>
-            <div className="space-y-4">
-              {[
-                { icon: Building2, title: t.contact.company, subtitle: 'Nad Ostrovem 1119/7, 147 00 Praha 4' },
-                { icon: Phone, title: t.contact.phone, subtitle: '+420-2-2680 5329' },
-                { icon: Mail, title: 'Email', subtitle: 'info@jakubcigler.archi' },
-                { icon: Globe, title: 'Web', subtitle: 'www.jakubcigler.archi' }
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-4 p-4" style={{ background: 'rgba(255,255,255,0.8)', backdropFilter: 'blur(10px)', border: '2px solid rgba(139,69,19,0.15)', clipPath: 'polygon(2% 0%, 98% 0%, 100% 100%, 0% 100%)' }}>
-                  <item.icon className="w-6 h-6 mt-1" style={{ color: '#8B4513' }} />
-                  <div>
-                    <p className="font-semibold" style={{ color: '#1F2937' }}>{item.title}</p>
-                    <p className="text-sm" style={{ color: '#6B7280' }}>{item.subtitle}</p>
-                  </div>
+            <h2 className="text-4xl md:text-5xl font-extralight text-neutral-900 mb-10 tracking-wide">{t.contact.title}</h2>
+            <p className="text-neutral-500 mb-12 font-light text-lg">{t.contact.subtitle}</p>
+            <div className="space-y-8">
+              <div className="flex items-start gap-5">
+                <div className="w-10 h-10 bg-neutral-100 flex items-center justify-center" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}>
+                  <MapPin className="w-4 h-4 text-amber-600" />
                 </div>
-              ))}
+                <div>
+                  <p className="text-neutral-900 font-light mb-1">{t.contact.company}</p>
+                  <p className="text-neutral-500 text-sm font-light">Nad Ostrovem 1119/7</p>
+                  <p className="text-neutral-500 text-sm font-light">147 00 Praha 4 - Podolí</p>
+                  <p className="text-neutral-500 text-sm font-light">Česká republika</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-5">
+                <div className="w-10 h-10 bg-neutral-100 flex items-center justify-center" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}>
+                  <Phone className="w-4 h-4 text-amber-600" />
+                </div>
+                <a href="tel:+420226805329" className="text-neutral-600 hover:text-amber-600 transition-colors font-light">+420 226 805 329</a>
+              </div>
+              <div className="flex items-center gap-5">
+                <div className="w-10 h-10 bg-neutral-100 flex items-center justify-center" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}>
+                  <Mail className="w-4 h-4 text-amber-600" />
+                </div>
+                <a href="mailto:info@jakubcigler.archi" className="text-neutral-600 hover:text-amber-600 transition-colors font-light">info@jakubcigler.archi</a>
+              </div>
+              <div className="flex items-center gap-5">
+                <div className="w-10 h-10 bg-neutral-100 flex items-center justify-center" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}>
+                  <Globe className="w-4 h-4 text-amber-600" />
+                </div>
+                <a href="https://www.jakubcigler.archi" target="_blank" rel="noopener noreferrer" className="text-neutral-600 hover:text-amber-600 transition-colors font-light">www.jakubcigler.archi</a>
+              </div>
             </div>
           </div>
-          <div className={`transition-all duration-1000 delay-300 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'}`}>
-            <CubisticCard>
-              <form className="p-8" style={{ background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(20px)', border: '2px solid rgba(139,69,19,0.2)', clipPath: 'polygon(3% 0%, 97% 0%, 100% 100%, 0% 100%)', boxShadow: '15px 15px 0 rgba(139,69,19,0.1), 30px 30px 60px rgba(0,0,0,0.1)' }}>
-                <div className="mb-6">
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#6B7280' }}>{t.contact.name}</label>
-                  <Input placeholder={t.contact.name} className="border-2" style={{ background: 'rgba(255,255,255,0.9)', borderColor: 'rgba(139,69,19,0.2)', clipPath: 'polygon(1% 0%, 99% 0%, 100% 100%, 0% 100%)' }} />
+          <CubisticCard clipPath="polygon(0 0, 100% 0, 100% 97%, 97% 100%, 0 100%)">
+            <form className="bg-neutral-50 p-10" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 97%, 97% 100%, 0 100%)' }} onSubmit={e => e.preventDefault()}>
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-xs text-neutral-500 mb-2 tracking-wider uppercase">{t.contact.name}</label>
+                  <Input className="bg-white border-neutral-200 focus:border-amber-500 transition-colors h-12" style={{ clipPath: 'polygon(0 0, 100% 0, 99% 100%, 1% 100%)' }} />
                 </div>
-                <div className="mb-6">
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#6B7280' }}>{t.contact.email}</label>
-                  <Input type="email" placeholder={t.contact.email} className="border-2" style={{ background: 'rgba(255,255,255,0.9)', borderColor: 'rgba(139,69,19,0.2)', clipPath: 'polygon(1% 0%, 99% 0%, 100% 100%, 0% 100%)' }} />
+                <div>
+                  <label className="block text-xs text-neutral-500 mb-2 tracking-wider uppercase">{t.contact.email}</label>
+                  <Input type="email" className="bg-white border-neutral-200 focus:border-amber-500 transition-colors h-12" style={{ clipPath: 'polygon(0 0, 100% 0, 99% 100%, 1% 100%)' }} />
                 </div>
-                <div className="mb-6">
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#6B7280' }}>{t.contact.message}</label>
-                  <Textarea placeholder={t.contact.message} className="border-2 min-h-32" style={{ background: 'rgba(255,255,255,0.9)', borderColor: 'rgba(139,69,19,0.2)', clipPath: 'polygon(1% 0%, 99% 0%, 100% 100%, 0% 100%)' }} />
+                <div>
+                  <label className="block text-xs text-neutral-500 mb-2 tracking-wider uppercase">{t.contact.message}</label>
+                  <Textarea rows={5} className="bg-white border-neutral-200 focus:border-amber-500 transition-colors resize-none" style={{ clipPath: 'polygon(0 0, 100% 0, 99% 100%, 1% 100%)' }} />
                 </div>
-                <Button type="submit" className="w-full py-6 text-white font-medium transition-all duration-300 hover:scale-105" style={{ background: 'linear-gradient(135deg, #B85C38, #8B4513)', clipPath: 'polygon(3% 0%, 97% 0%, 100% 50%, 97% 100%, 3% 100%, 0% 50%)', boxShadow: '0 15px 35px -10px rgba(139,69,19,0.4)' }}>
-                  {t.contact.send} <ArrowRight className="ml-2 w-5 h-5" />
+                <Button type="submit" className="w-full bg-neutral-900 hover:bg-amber-600 text-white py-6 text-sm tracking-widest font-light transition-all duration-500" style={{ clipPath: 'polygon(2% 0%, 98% 0%, 100% 50%, 98% 100%, 2% 100%, 0% 50%)' }}>
+                  {t.contact.send.toUpperCase()}
                 </Button>
-              </form>
-            </CubisticCard>
-          </div>
+              </div>
+            </form>
+          </CubisticCard>
         </div>
       </div>
     </section>
@@ -537,39 +522,50 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer className="relative py-12" style={{ background: 'linear-gradient(135deg, rgba(250,248,245,0.95), rgba(255,255,255,0.95))', borderTop: '2px solid rgba(139,69,19,0.2)' }}>
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <Gem className="w-8 h-8 mx-auto mb-4" style={{ color: '#8B4513' }} />
-        <p className="font-bold tracking-wide mb-2" style={{ color: '#1F2937' }}>JAKUB CIGLER ARCHITEKTI, a.s.</p>
-        <p className="text-sm" style={{ color: '#9CA3AF' }}>&copy; 2001-2026 All rights reserved</p>
+    <footer className="py-16 bg-neutral-950 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent, transparent 100px, rgba(184,115,51,0.1) 100px, rgba(184,115,51,0.1) 200px)' }} />
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <span className="text-2xl font-extralight tracking-widest text-white">JCA</span>
+            <div className="w-px h-6 bg-white/20" />
+            <span className="text-neutral-500 text-sm tracking-wide">JAKUB CIGLER ARCHITEKTI, a.s.</span>
+          </div>
+          <p className="text-neutral-600 text-sm">© 2001-2026 All rights reserved</p>
+        </div>
       </div>
     </footer>
   );
 }
 
-function App() {
-  const [lang, setLang] = useState<Language>('cs');
+export default function App() {
   const [loading, setLoading] = useState(true);
+  const [lang, setLang] = useState<Language>('cs');
   const t = translations[lang];
   const isRTL = lang === 'ar';
+  useEffect(() => {
+    if (isRTL) {
+      document.documentElement.dir = 'rtl';
+      document.documentElement.lang = 'ar';
+    } else {
+      document.documentElement.dir = 'ltr';
+      document.documentElement.lang = lang;
+    }
+  }, [lang, isRTL]);
+  if (loading) return <LoadingScreen onComplete={() => setLoading(false)} />;
   return (
     <LanguageContext.Provider value={{ lang, setLang, t, isRTL }}>
-      <div className={`min-h-screen ${isRTL ? 'rtl' : 'ltr'}`} style={{ fontFamily: "'Inter', sans-serif" }}>
-        {loading ? <LoadingScreen onComplete={() => setLoading(false)} /> : (
-          <>
-            <Navigation />
-            <HeroSection />
-            <AboutSection />
-            <ProjectsSection />
-            <AwardsSection />
-            <VideosSection />
-            <ContactSection />
-            <Footer />
-          </>
-        )}
+      <div className="min-h-screen bg-white">
+        <GeometricOverlay />
+        <Navigation />
+        <HeroSection />
+        <AboutSection />
+        <ProjectsSection />
+        <AwardsSection />
+        <VideosSection />
+        <ContactSection />
+        <Footer />
       </div>
     </LanguageContext.Provider>
   );
 }
-
-export default App;
